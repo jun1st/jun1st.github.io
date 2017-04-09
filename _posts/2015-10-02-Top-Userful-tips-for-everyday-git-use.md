@@ -11,7 +11,7 @@ image: git.png
 ---
 
 
-##用好Git Log
+## 用好Git Log
 
 你应该用过 git log, 但是 log 支持很多有用的参数也许你不知道，下面列出一些比较有用的
 
@@ -28,12 +28,12 @@ image: git.png
 	git log --author="jack" --after="1 week ago" -- oneline
 
 
-##查看还没有合并到Master/父分之中的改动
+## 查看还没有合并到Master/父分之中的改动
 
 	git log --no-merges masters..
 
 
-##从另一个分支中获取文件
+## 从另一个分支中获取文件
 
 先看另一个分支的某个文件，其实可以不用切换到那个分支，执行下面的命令就可以直接查看
 
@@ -45,7 +45,7 @@ image: git.png
 	git diff some-branch some-file.js
 
 
-##关于 rebasing
+## 关于 rebasing
 
 Rebase其实比较复杂，单独写一篇文章都未必讲的清楚明白, 当时有一个很实用的技巧不得不提
 
@@ -58,7 +58,7 @@ Rebase其实比较复杂，单独写一篇文章都未必讲的清楚明白, 当
 
 这时rebase就是更好的选择，`git pull --rebase`, git 会先从remote获取最新的代码，然后在push本地的改动，不会有merge产生.
 
-##修改上一个Commit
+## 修改上一个Commit
 
 发现刚刚提交的Commit有一个Typo或者其它很小的改动，Well，当然可以提交个新的Commit， 然后log写上 “fix typo”.
 
@@ -69,7 +69,7 @@ Rebase其实比较复杂，单独写一篇文章都未必讲的清楚明白, 当
 3. 执行 `git commit --amend` 这会把这一次的改动提交到上一个Commit中
 4. Push
 
-##Git的三个状态，三个状态之间如何切换
+## Git的三个状态，三个状态之间如何切换
 
 __三个状态：__
 
@@ -91,14 +91,14 @@ __如何在三个状态之间切换__
 	git reset --hard HEAD
 
 
-##Revert Commit
+## Revert Commit
 
 	git revert -n
 
 取消之前的Commit
 
 
-##为常用的git命令设置别名
+## 为常用的git命令设置别名
 
 	git l = git log --online --grath
 
