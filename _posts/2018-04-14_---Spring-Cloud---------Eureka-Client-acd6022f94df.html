@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>使用 Spring Cloud 构建微服务之二 Eureka Client</title><meta name="description" content="上一片构建了一个Eureka Server，服务注册发现服务， 现在就来注册一个服务，作为服务的提供者。"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">使用 Spring Cloud 构建微服务之二 Eureka Client</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+上一片构建了一个Eureka Server，服务注册发现服务， 现在就来注册一个服务，作为服务的提供者。
+</section>
+<section data-field="body" class="e-content">
+<section name="115c" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="76f6" id="76f6" class="graf graf--h3 graf--leading graf--title">使用 Spring Cloud 构建微服务之二 Eureka Client</h3><p name="3381" id="3381" class="graf graf--p graf-after--h3"><a href="https://medium.com/@jun1st/%E4%BD%BF%E7%94%A8-spring-cloud-%E6%9E%84%E5%BB%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B9%8B%E4%B8%80-eureka-3e07eb8dba31" data-href="https://medium.com/@jun1st/%E4%BD%BF%E7%94%A8-spring-cloud-%E6%9E%84%E5%BB%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B9%8B%E4%B8%80-eureka-3e07eb8dba31" class="markup--anchor markup--p-anchor" target="_blank">上一片构建了一个Eureka Server，服务注册发现服务</a>， 现在就来注册一个服务，作为服务的提供者。</p><p name="f5ef" id="f5ef" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">添加 Eureka 依赖</strong></p><p name="405b" id="405b" class="graf graf--p graf-after--p">还是建一个Spring Boot应用，需要添加的依赖有</p><pre name="eb33" id="eb33" class="graf graf--pre graf-after--p">&lt;<strong class="markup--strong markup--pre-strong">dependency</strong>&gt;<br>    &lt;<strong class="markup--strong markup--pre-strong">groupId</strong>&gt;org.springframework.cloud&lt;/<strong class="markup--strong markup--pre-strong">groupId</strong>&gt;<br>    &lt;<strong class="markup--strong markup--pre-strong">artifactId</strong>&gt;spring-cloud-starter-eureka&lt;/<strong class="markup--strong markup--pre-strong">artifactId</strong>&gt;<br>&lt;/<strong class="markup--strong markup--pre-strong">dependency</strong>&gt;</pre><p name="f6dd" id="f6dd" class="graf graf--p graf-after--pre"><strong class="markup--strong markup--p-strong">配置 Eureka 属性</strong></p><p name="248f" id="248f" class="graf graf--p graf-after--p">需要给应用起个名字，作为自己的唯一 ID 在 Eureka Server上注册自己，并且需要声明 Eureka Server 的地址：</p><pre name="88b0" id="88b0" class="graf graf--pre graf-after--p"><strong class="markup--strong markup--pre-strong">spring.application.name</strong>=<strong class="markup--strong markup--pre-strong">service-provider<br>eureka.client.serviceUrl.defaultZone</strong>=<strong class="markup--strong markup--pre-strong">http://localhost:8000/eureka<br>eureka.instance.prefer-ip-address</strong>=<strong class="markup--strong markup--pre-strong">true</strong></pre><p name="b11d" id="b11d" class="graf graf--p graf-after--pre">prefer-ip-address 看自己偏好选择。</p><p name="67bf" id="67bf" class="graf graf--p graf-after--p">同时给 Spring Boot 应用添加 EnableEurekaClient 注解，Spring Boot 应用就会想指定的 server 注册自己。</p><pre name="3bc3" id="3bc3" class="graf graf--pre graf-after--p">@EnableEurekaClient<br>@SpringBootApplication<br><strong class="markup--strong markup--pre-strong">public class </strong>ServiceProviderApplication {<br><br>   <strong class="markup--strong markup--pre-strong">public static void </strong>main(String[] args) {<br>      SpringApplication.<em class="markup--em markup--pre-em">run</em>(ServiceProviderApplication.<strong class="markup--strong markup--pre-strong">class</strong>, args);<br>   }<br>}</pre><p name="55a5" id="55a5" class="graf graf--p graf-after--pre">在启动 Eureka Server 的同时，启动 Service Provider 应用，应该就可以在 Server 的页面上看到这个服务已经注册上去了。</p><figure name="db54" id="db54" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 322px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 46%;"></div><img class="graf-image" data-image-id="1*zKMpGIa83TwQsdfccTpdTw.png" data-width="2522" data-height="1160" src="https://cdn-images-1.medium.com/max/800/1*zKMpGIa83TwQsdfccTpdTw.png"></div></figure><p name="bb0f" id="bb0f" class="graf graf--p graf-after--figure graf--trailing"><a href="https://github.com/jun1st/service-provider" data-href="https://github.com/jun1st/service-provider" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Demo 地址</a></p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/spring" class="p-tag">Spring</a>, <a href="https://medium.com/tag/spring-boot" class="p-tag">Spring Boot</a>, <a href="https://medium.com/tag/spring-cloud" class="p-tag">Spring Cloud</a>, <a href="https://medium.com/tag/eureka" class="p-tag">Eureka</a></p><p>By <a href="https://medium.com/@fengqijun" class="p-author h-card">feng qijun</a> on <a href="https://medium.com/p/acd6022f94df"><time class="dt-published" datetime="2018-04-14T15:43:21.265Z">April 14, 2018</time></a>.</p><p><a href="https://medium.com/@fengqijun/%E4%BD%BF%E7%94%A8-spring-cloud-%E6%9E%84%E5%BB%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B9%8B%E4%BA%8C-eureka-client-acd6022f94df" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on April 17, 2018.</p></footer></article>
+
+</body></html>
