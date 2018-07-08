@@ -11,7 +11,7 @@ title                    : "fengd's notes"
 title_separator          : "-"
 name                     : "冯琦钧"
 description              : "An amazing website."
-url                      : "https://blog.fengqijun.me"
+url                      : "//blog.fengqijun.me"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "jun1st/jun1st.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
@@ -244,5 +244,3 @@ defaults:
       comments:  true
       share: true
       related: true
-
-theme: jekyll-theme-hacker
