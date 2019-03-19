@@ -10,6 +10,7 @@ locale                   : "zh"
 title                    : "fengd's notes"
 title_separator          : "-"
 name                     : "冯琦钧"
+remote_theme             : "mmistakes/minimal-mistakes@4.15.2"
 description              : "An amazing website."
 url                      : "//blog.fengqijun.me"
 baseurl                  : # the subpath of your site, e.g. "/blog"
@@ -69,10 +70,10 @@ social:
   links: # An array of links to social media profiles
 
 # Analytics
-# analytics:
-#   provider               : "google" # false (default), "google", "google-universal", "custom"
-#   google:
-#     tracking_id          : "UA-28122135-1"
+analytics:
+  provider               : "google" # false (default), "google", "google-universal", "custom"
+  google:
+    tracking_id          : "UA-28122135-1"
 
 
 # Site Author
@@ -179,6 +180,7 @@ timezone: "Asia/Shanghai"
 
 # Plugins
 plugins:
+  - jekyll-include-cache
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
