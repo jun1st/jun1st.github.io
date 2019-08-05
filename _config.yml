@@ -6,11 +6,11 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-locale                   : "zh"
+locale                   : "zh-CN"
 title                    : "fengd's notes"
 title_separator          : "-"
 name                     : "冯琦钧"
-remote_theme             : "mmistakes/minimal-mistakes@4.15.2"
+theme                    : "minimal-mistakes-jekyll"
 description              : "An amazing website."
 url                      : "https://blog.fengqijun.me"
 baseurl                  : # the subpath of your site, e.g. "/blog"

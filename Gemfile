@@ -1,7 +1,9 @@
-source 'https://rubygems.org'
+source 'https://gems.ruby-china.com'
 
 gem 'jekyll'
 gem "github-pages", group: :jekyll_plugins
+
+gem "minimal-mistakes-jekyll"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
