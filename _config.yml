@@ -11,6 +11,7 @@ title                    : "fengd's notes"
 title_separator          : "-"
 name                     : "冯琦钧"
 theme                    : "minimal-mistakes-jekyll"
+minimal_mistakes_skin    : "default"
 description              : "An amazing website."
 url                      : "https://blog.fengqijun.me"
 baseurl                  : # the subpath of your site, e.g. "/blog"
@@ -19,7 +20,7 @@ teaser                   : # path of fallback teaser image, e.g. "/assets/images
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 50
 comments:
-  provider               : "disqus"
+  provider               : "Staticman v2"
   disqus:
     shortname            : "blogfengqijunme"
   discourse:
@@ -29,7 +30,7 @@ comments:
     appid                :
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
-staticman:
+staticman_v2:
   allowedFields          : ['name', 'email', 'url', 'message']
   branch                 : "master"
   commitMessage          : "New comment."

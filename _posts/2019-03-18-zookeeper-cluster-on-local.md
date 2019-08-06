@@ -2,9 +2,10 @@
 layout: single
 title: 搭建 Zookeeper Cluster
 author: fengd
-summary: 本地搭建 zookeeper cluster
+summary: 如何在本地搭建一个 zookeeper cluster， 了解 zookeeper 的使用和维护
 tags: zookeeper cluster
 date: 2019-03-18T00:45:24+08:00
+comments: true
 ---
 
 **下载 Zookeeper**
