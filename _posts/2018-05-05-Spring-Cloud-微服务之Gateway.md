@@ -2,7 +2,7 @@
 layout: single
 title: 使用 Spring Cloud 构建微服务之Gateway
 author: fengd
-summary: 使用 Spring Cloud 构建微服务之Gateway
+excerpt: 使用 Spring Cloud 构建微服务之Gateway
 tags: spring spring-cloud zuul gateway
 date: 2018-04-16T15:45:24+08:00
 ---

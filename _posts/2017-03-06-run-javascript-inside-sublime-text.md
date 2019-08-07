@@ -2,7 +2,7 @@
 layout: single
 title: 在 Sublime Text 里运行 Javascript
 author: fengd
-summary: 配置 Sublime Text 的 build 系统，直接在 Sublime Text 里运行 Javascript 代码
+excerpt: 配置 Sublime Text 的 build 系统，直接在 Sublime Text 里运行 Javascript 代码
 tags: sublime-text javascript console
 date: 2017-03-06T15:45:24+08:00
 header:

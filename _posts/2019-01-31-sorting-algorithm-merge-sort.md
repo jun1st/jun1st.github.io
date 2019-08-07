@@ -2,7 +2,7 @@
 layout: single
 title: 排序算法之合并排序
 author: fengd
-summary: 排序算法之合并排序
+excerpt: back to basics 排序算法之合并排序
 tags: sorting merge algorithm
 date: 2019-01-31T21:00:24+08:00
 ---

@@ -1,9 +1,13 @@
 ---
 layout: single
 title: 搭建 Zookeeper Cluster
+header:
+  image: "/assets/images/shanghai.jpg"
 author: fengd
-summary: 如何在本地搭建一个 zookeeper cluster， 了解 zookeeper 的使用和维护
-tags: zookeeper cluster
+excerpt: 如何在本地搭建一个 zookeeper cluster， 了解 zookeeper 的使用和维护
+tags: 
+  - zookeeper 
+  - cluster
 date: 2019-03-18T00:45:24+08:00
 comments: true
 ---

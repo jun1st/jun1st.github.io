@@ -2,7 +2,7 @@
 layout: single
 title: AWS S4 Signing With Authorization Header
 author: fengd
-summary: AWS S4 Signing With Authorization Header
+excerpt: AWS S4 Signing With Authorization Header
 tags: AWS S4Request Signing Authorization
 date: 2018-07-07T15:00:24+08:00
 ---

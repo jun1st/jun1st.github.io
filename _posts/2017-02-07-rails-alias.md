@@ -2,7 +2,7 @@
 layout: single
 title: Ruby on Rails 中的 alias, alias_method 和 alias_attribute
 author: fengd
-summary: 如何正确使用各种Rails中的alias
+excerpt: 如何正确使用各种Rails中的alias
 tags: ruby rails alias
 date: 2017-02-06T16:45:24+08:00
 header:

@@ -2,7 +2,7 @@
 layout: single
 title: 使用 Spring Cloud 构建微服务之二 Eureka Client
 author: fengd
-summary: 使用 Spring Cloud 构建微服务之二 Eureka Client
+excerpt: 使用 Spring Cloud 构建微服务之二 Eureka Client
 tags: spring spring-cloud eureka
 date: 2018-04-14T15:45:24+08:00
 ---

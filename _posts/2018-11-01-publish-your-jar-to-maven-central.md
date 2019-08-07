@@ -2,7 +2,7 @@
 layout: single
 title: 发布你的第一个 Maven Jar 库到 Maven 中央仓库
 author: fengd
-summary: publish your first jar to maven central 
+excerpt: publish your first jar to maven central 
 tags: jar maven central
 date: 2018-11-01T21:00:24+08:00
 ---
