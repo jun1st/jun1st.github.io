@@ -17,9 +17,9 @@ url                      : "https://blog.fengqijun.me"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "jun1st/jun1st.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : /assets/default-header.jpg
-breadcrumbs              : true # true, false (default)
+breadcrumbs              : false # true, false (default)
 search                   : true
-words_per_minute         : 40
+words_per_minute         : 50
 comments:
   provider               : "disqus"
   disqus:
