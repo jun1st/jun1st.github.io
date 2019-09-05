@@ -20,13 +20,16 @@ tags: [postgresql,ubuntu]
 
  创建数据库
 
- 	createdb -p 5432 -O railsUser -U railsUser -E UTF8 MyRailsProject
+```
+ createdb -p 5432 -O railsUser -U railsUser -E UTF8 MyRailsProject
+```
 
  备份还原数据库
 
- 	pg_dump -p 5432 -h localhost -Fc -U railsUser --no-owner MyRailsProject > ~/myrails.pgdump
- 	pg_restore -p 5432 -h localhost -Fc -d MyRailsProject -U railsUser --no-owner < ~/myrails.pgdump
-
+```
+ pg_dump -p 5432 -h localhost -Fc -U railsUser --no-owner MyRailsProject > ~/myrails.pgdump
+ pg_restore -p 5432 -h localhost -Fc -d MyRailsProject -U railsUser --no-owner < ~/myrails.pgdump
+```
 
 如果Web和DB服务器是在同一台，那么可以设置Postgresql只允许localhost访问，
 

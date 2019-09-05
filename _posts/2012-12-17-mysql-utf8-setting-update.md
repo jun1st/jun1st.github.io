@@ -6,7 +6,7 @@ categories: database
 tags: [mysql, utf8]
 ---
 
-I wrote a post about setting default character and encoding of MySQL to utf8 on OS X, [here](http://fengqijun.me/database/2012/11/18/mysqlencodingutf8.html). But there is a better way to do this instead of modifying the default my.cnf file directly on Ubuntu.
+I wrote a post about setting default character and encoding of MySQL to utf8 on OS X, [here](https://blogs.fengqijun.me/database/2012/11/18/mysqlencodingutf8.html). But there is a better way to do this instead of modifying the default my.cnf file directly on Ubuntu.
 
 the last line of my.cnf file <code>/etc/mysql/</code> is
 

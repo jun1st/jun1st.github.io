@@ -1,6 +1,6 @@
 ---
 layout: single
-title: 第一个iOS App已经上App Store了
+title: 第一个 iOS App 已经上App Store了
 description: "我的第一个iOS App已经被Approve了，虽然是很傻的一个App，但是这是一个开始"
 categories: development
 tags: [ios, app, killspiders]
@@ -19,6 +19,5 @@ tags: [ios, app, killspiders]
 
 Finally, 希望有人来玩玩这个App
 
-[![][id]](https://itunes.apple.com/app/killspiders/id585233151?mt=8)
-[id]: http://images.fengqijun.me/2012-12/Download_KillSpiders_On_AppStore.png
+[下载](https://itunes.apple.com/app/killspiders/id585233151?mt=8)
 

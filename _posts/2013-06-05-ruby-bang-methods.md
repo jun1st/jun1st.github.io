@@ -7,7 +7,7 @@ tags: [ruby,method]
 ---
 Ruby中的有所谓的Bang Method,就是方法名称后有!的，比如capitalize!
 
->Methods that include an exclamation point, such as capitalize are known as dangerous methods. In Ruby speak, that means they will modify the object it’s called on
+> Methods that include an exclamation point, such as capitalize are known as dangerous methods. In Ruby speak, that means they will modify the object it’s called on
 
 但是在Rails ActiveRecord中，Bang方法还会抛出异常，而不是返回true/false, 比如save!
 

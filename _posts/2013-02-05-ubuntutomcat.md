@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "在ubuntu上安装Tomcat"
+title: "在ubuntu 上安装 Tomcat"
 description: "install tomcat on ubuntu"
 categories: linux
 tags: [tomcat,linux]

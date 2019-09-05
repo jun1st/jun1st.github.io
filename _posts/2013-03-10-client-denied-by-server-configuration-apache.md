@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Apache下网站文件夹的权限设置"
+title: "Apache 下网站文件夹的权限设置"
 description: "set up accessiblity of website folder under apache"
 categories: apache
 tags: [apache,folder,security]

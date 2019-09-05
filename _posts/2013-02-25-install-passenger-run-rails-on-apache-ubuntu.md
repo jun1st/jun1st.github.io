@@ -1,11 +1,11 @@
 ---
 layout: single
-title: "在ubuntu和apache上安装passenger来运行rails"
+title: "在ubuntu 和 apache上 安装 passenger 来运行 rails"
 description: "set up an ubuntu server for running Rails on it, leveraging apache and passenger"
 categories: rails
-tags: [ubuntu,apache,passenger,rails]
+tags: [ubuntu, apache, passenger, rails]
 ---
-最近装了好几次Rails系统了，不论是在Ubuntu上还是在OSX上，发现都是用RVM比较方便，安装过程还是有点繁琐的，所以纪录一下，下次用的时候自己做个参考。
+最近装了好几次 Rails 系统了，不论是在 Ubuntu 上还是在 OSX 上，发现都是用 RVM 比较方便，安装过程还是有点繁琐的，所以纪录一下，下次用的时候自己做个参考。
 
 首先是升级一下Ubuntu系统，
 
