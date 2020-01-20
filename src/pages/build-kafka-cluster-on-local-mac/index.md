@@ -64,7 +64,7 @@ bin/kafka-topics.sh --bootstrap-server localhost:9092 --describe __consumber_off
 
 修改 consumer_offsets 的 replication factor，需要用到 kafka 的 reassignment 功能， 这时需要自己提供一个 assignment json 文件。
 
-```json
+```jsxon
 {
   "version": 1,
   "partitions": [

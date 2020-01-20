@@ -8,7 +8,7 @@ Sitemap is good for google to index your site.
 
 Add a new file named `sitemap.xml.js` under `pages`
 
-```js
+```jsx
 import React, { Component } from "react";
 import blogposts from "../posts/index";
 
@@ -44,7 +44,7 @@ export default class SiteMap extends Component {
 
 That's it. Fetch all posts data, and render an xml file with it.
 
-```js
+```jsx
 const fs = require("fs");
 const path = require("path");
 

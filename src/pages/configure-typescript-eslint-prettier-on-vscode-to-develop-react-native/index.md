@@ -23,7 +23,7 @@ $ tsc --init --pretty --target es5 --allowJs --checkJs --jsx react-native --allo
 
 配置文件如下
 
-```js
+```jsx
 {
   "compilerOptions": {
     /* Basic Options */
@@ -51,7 +51,7 @@ Create a file with name .eslintrc.js , which is the file you configure how eslin
 
 here is my one:
 
-```js
+```jsx
 module.exports = {
   env: {
     // 指定脚本的运行环境。每种环境都有一组特定的预定义全局变量

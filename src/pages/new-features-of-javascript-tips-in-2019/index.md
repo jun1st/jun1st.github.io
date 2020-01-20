@@ -8,7 +8,7 @@ spoiler: 2019年，你应该使用的 JavaScript 新特性
 
 如果你依然深陷回调地狱，那么你依然写着 2014 年的古董代码。除非你别无选择，否则就不要使用回调了。Promise 还可以，但是 async / await 才是你的正确选择。
 
-```js
+```jsx
 async function getDate() {
   const result = await axios.get("https://dube.io/service/ping");
   const data = result.data;
@@ -20,7 +20,7 @@ getData();
 
 ## 解构赋值和默认值（Destructuring & default values）
 
-```js
+```jsx
 const result = await axios.get("https://your-api-url");
 const data = result.data;
 ```
@@ -33,7 +33,7 @@ const data = result.data;
 
 还可以把变量重命名和给出默认值
 
-```js
+```jsx
 	const { data: newData } = await.get(...)
 	const { id: 1 } = {}
 	console.log(id) // 1
@@ -41,7 +41,7 @@ const data = result.data;
 
 解构赋值同样适用于函数参数的情况：
 
-```js
+```jsx
 function calculate({ operands = [1, 2], type = "addition" } = {}) {
   return operands.reduce(
     (acc, val) => {
@@ -86,7 +86,7 @@ console.log(calculate({ operands: [2, 3, 4], type: "multiplication" })); // 24
 
 要访问嵌套对象的属性，但是不确定嵌套对象是否有值？
 
-```js
+```jsx
 let data;
 if (obj && obj.firstProp && obj.firstProp.nextProp) {
   data = obj.firstProp.nextProp.data;
