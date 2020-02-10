@@ -1,4 +1,404 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[fengd' Blog RSS Feed]]></title><description><![CDATA[Personal log by fengd. ]]></description><link>https://blog.fengqijun.me</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 26 Jan 2020 08:24:45 GMT</lastBuildDate><item><title><![CDATA[Java 集合]]></title><description><![CDATA[Java 集合类型分解]]></description><link>https://blog.fengqijun.me/java-collection/</link><guid isPermaLink="false">https://blog.fengqijun.me/java-collection/</guid><pubDate>Mon, 20 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;集合是我们平常用的最多的数据类型了，并且自带很多常用方法，比如 sort 等，&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[fengd' Blog RSS Feed]]></title><description><![CDATA[Personal log by fengd. ]]></description><link>https://blog.fengqijun.me</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 10 Feb 2020 14:32:16 GMT</lastBuildDate><item><title><![CDATA[Spring Framework 基础组建探秘之 Beans]]></title><description><![CDATA[Spring 是目前 Java 开发中最流行的，也是最优秀的开发框架。Spring Beans 作为整个 Spring 框架中的核心组建之一，今天我们就来打开看看。]]></description><link>https://blog.fengqijun.me/spring-framework-components-one-beans/</link><guid isPermaLink="false">https://blog.fengqijun.me/spring-framework-components-one-beans/</guid><pubDate>Sun, 09 Feb 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;可能你已经习惯了直接从 Spring Initializer 来初始化一个 Spring Boot 项目，然后整个 Spring 框架就被带到项目里面来了。其实 Spring 作为一个十分优秀的框架，每个组建都是可以独立使用的。 探索 Spring Beans 组建，我们就从头开始添加需要的 Jar 包。&lt;/p&gt;
+&lt;h2 id=&quot;build-from-source&quot;&gt;&lt;a href=&quot;#build-from-source&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Build From Source&lt;/h2&gt;
+&lt;p&gt;参考 Spring &lt;a href=&quot;https://github.com/spring-projects/spring-framework/wiki/Build-from-Source&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;官方文档&lt;/a&gt;, 下载编译源代码&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone git@github.com:spring-projects/spring-framework.git
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; spring-framework
+
+./gradlew build&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果你第一次编译，下载所有需要的代码和库，可能会需要不少时间。&lt;/p&gt;
+&lt;h2 id=&quot;使用-spring-beans&quot;&gt;&lt;a href=&quot;#%E4%BD%BF%E7%94%A8-spring-beans&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;使用 Spring Beans&lt;/h2&gt;
+&lt;p&gt;我们新建一个 Maven 项目来单独使用 Spring Beans。 我使用 Intellij Idea， File -&gt; New -&gt; Project， 选择 Maven 项目模板，创建一个空项目。 新建第一个类: me.fengqijun.Main&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/5d72a/1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 62.829736211031175%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAABe0lEQVQ4y51Sa0+DMBTl//8pv5n4wWjmHAvsQR8wpzBKCTAp9Nh2L6ZucTY5ub3tvSfnPrzJKsXz+BX+ZIIgCDAajUAIge/7KIoCUkpnLYQQzuZ5js1m43x7F8L6AttyDC+TJSK+QhgGyLIMSim0bevQ9/1FdF135ivVoZRreE3dgMZvWCWJ+/jv0Vqbakp41slFAZK8ISIUTVMfA4bB13AiLHaE0D142eCJGaWMXk36TdmJUO4JzbHlZkJiQRkop2CMYTqdur4OVf6JcBgYyAYPsxnoYoG6adyQblZondYkGpmIqhYvdAVOIhBKMZ/PUVXV7YRFIbBex1hG1OxhhMRMXal2r9BO/1DyOQ5vZ4Rdr2FTqizBYuljuSTgPDb92wyUXFqXk3WEuttC5u9mFzkYmaFTtan800Fri9YBONkhdm/KWbc2bRWiju4Qzu6NqkfzGQ/AHbTmx/t37P5iY5kh/IBnRoFJKl3zmRlCmqY/lvlS/8572LuSvwBOvPJSp9ukEgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;structure&quot;
+        title=&quot;&quot;
+        src=&quot;https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/fcda8/1.png&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/12f09/1.png 148w,https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/e4a3f/1.png 295w,https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/fcda8/1.png 590w,https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/5d72a/1.png 834w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;添加 Spring Beans 的 Jar 包。 通过 Open Module Setting 来设置项目以来的 Libries&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/076ca/2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 163.8949671772429%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAhCAYAAADZPosTAAAACXBIWXMAABYlAAAWJQFJUiTwAAAFHklEQVRIx31WSZPaZhTkf7tSlVOqfPAll5xT9iHbKak4LsdxnMSTwrPAsAq0gTYECIQQiB06rz9GmJmxQ9WrT4jva3W/1++JQskKUG6aKFU0mN0egkECrx/D7Y3h9EZwgugUXa5yr6ZZaOpd6LaPSsNA1w3R9AeotHQUbqoNvLss4/c//sRf/1zg3d/vUfxwjXKlhkazjbZhqWjpst4F7ze0tlqr9SZabR2OV4PvllGIRxGajo/bWgM311fodrvo9XrwPA/lchnD4QBRNMRI9o1GI7XG4zFms1RihvlcgmuaYBQNUNhtt8iyBbwgxGqxAD/8PplMoOu6egDXTqcDx3GgaS11L0kSLGR/lmUqlsuVOlfYCuB+v8dwFMN0ffQHA/T7fbTbbYRhiPV6LZuX6vA5wHw+V0GWvG/btjqnANVnv4M5ydC0OujakrNWC41GQyQPMZ1OT2Dna369Wq3guq6kJjoDVJhbhNEYlufD9z3c3NwoppRKNjnIeRzlLjGWvPLBJ8DD4aDWhSzFjo/Ac2FL3riRDI4FmH8yCMxCcu8JcLvdqcr1hbbTj1Q1dd1QDG9vb5V0MvkcKCXTBQUCKbnCbLNawtKr8MUyBKjX6zBNMX2ppGz0Odlkz4fe5XAjuVtjmgq7fojx0JPrRFW4WCyKTTT1dFqFB84rngcfRFvxTGG97WOTaJi6RTTbRfGXIYkeSj5iWJalwJjs/5ObW0nlEPsN5uJDzQ+kdTrwfEd+iDAYDFX+CJoKexYml/cpUO5Rkldi3IlsMnRT7OFKziyxjK86hWC8plwal3nMJX6KpSpKtszQkX41Ow4COUy3B0Gg6BOEeSEQvcgDPPiQJb8PpMOUZJp5nM7R7o8wkRu9XqgOEojDgZVm11QqFeW18/bLO4agTM+xypstYtGvuw66UinDMNRBAuadUqvVlHXIkrk8DxaLQWWqyjup8nYbIBhbMjBLMI1/RaKBOJ4oqQQnENNAbzK3ZEJ5VBLH8YklCyM+7Iitu1itTbhhFVrrreTDRCDSr2U+VqtVJZl+5LCgdJqYrJvNpnoIRxkfzlUAuwLoiLk70nYaDOtCqBvCJFFVJkOyoB/z4rDyDDLkeCMo73PfHeARdLmk7CtxfV2s4ioWzCEHbF4U9v55/iiVK4Ep/R4g5XthBbpREct0TwUiG/Y0GT60zfmw5fVJ8uHgqDWdSe8GtsgZK2aUzRwS9HPtlz+EXjwBHkG7AtiCaWsC1EG9cXyjmaYt0g21zuaZ7Jk/irm8T/jbA0BHBkETTmhhNI0x8C30hW0UOuj7NrarqQzOTGbdeczl7BKxTKlFOrwPuBfARabhzbWOnz8keHM1wKtiiLelEV5fDnFRT/G+luLVdYJfLxO8vMzXKV5fRfjtMj7PYVcxXK80PH9t4Mm3EZ796OPp9z08+6mn1qff+fjmZYKvfkjw5HmML15MVDx5PsHXv0zx5YvBfUBV6Z2F3TrELJa/F7VreB15+1UuYcskz9IIhy0lLh7HLsN+nTwGPOwlf7ELP4zEzJ7qGE9mZSRVZ+Kn6ewY09nH67O4L5m5PFjS1y5KloeStF6tVld9u9lslHHzYZBHfo/WoWcfMdwLw3Eq/8JGCToyD9lWWTZXQ4HBfmXk1/QfhwLb7u6t90DywcY4suHIwKWxaepWq60m+XFyd8Sjtopj5yxOTXDWyx+rzDb0Aw0lmSiNRgW1+q0M2YowDYXJRHI3VpGmsayxsByrlWB8sf0HPQWa04UZdaIAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;module setting&quot;
+        title=&quot;&quot;
+        src=&quot;https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/fcda8/2.png&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/12f09/2.png 148w,https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/e4a3f/2.png 295w,https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/fcda8/2.png 590w,https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/efc66/2.png 885w,https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/076ca/2.png 914w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;添加之前我们自己编译出来的 Jar 包， Jar 包的路径是在 spring 项目下，对应的 module， build -&gt; libs 下，&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/8c48a/4.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 24.427480916030532%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA1klEQVQY04WMQU7DMBBFff9TdMUBQOoCFhWiQFUQoogUSkpJkxASpyEJEqt4/IgNrQSLYunpe+z5Tz2tIpbRmvhNczlLGF9HTG5TZosNd2HDPHwlXr+QpilZlnmSJCHPc9q2/UXTNKjR1YrR9JnpouJoUjA8rzg8Kxle9PP4nSD6pKpLtNbUde2LLl35r8y9q8FxweBEc3D6gbUdYH+Q3d32IWIwZj9d16Hmjw8EPXpTYsQivtyn4DFGeqET/3/cngrCmJv7kGVceNH2YysRkd28j++e8AVsqXvYUpWkKAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;add jars&quot;
+        title=&quot;&quot;
+        src=&quot;https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/fcda8/4.png&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/12f09/4.png 148w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/e4a3f/4.png 295w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/fcda8/4.png 590w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/efc66/4.png 885w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/c83ae/4.png 1180w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/8c48a/4.png 2096w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;看到这里一共添加了 3 个 jar 包，这个 Core 是 Beans 依赖的， 而 apache commons 是 Core 依赖的。&lt;/p&gt;
+&lt;h2 id=&quot;使用-beans&quot;&gt;&lt;a href=&quot;#%E4%BD%BF%E7%94%A8-beans&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;使用 Beans&lt;/h2&gt;
+&lt;p&gt;添加 MyTestBean.java 类，&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;me&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;fengqijun&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MyTestBean&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; testStr &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;test string&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getTestStr&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; testStr&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt;  &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;setTestStr&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;testStr &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在 resources 目录下，添加 beans.xml 文件 &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;xml&quot;&gt;&lt;pre class=&quot;language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token prolog&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;beans&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;xmlns&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;http://www.springframework.org/schema/beans&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
+       &lt;span class=&quot;token attr-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;xmlns:&lt;/span&gt;xsi&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;http://www.w3.org/2001/XMLSchema-instance&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
+       &lt;span class=&quot;token attr-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;xsi:&lt;/span&gt;schemaLocation&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;bean&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;myTestBean&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;me.fengqijun.MyTestBean&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;beans&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;修改 Main.java 类&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;me&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;fengqijun&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;springframework&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;beans&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;factory&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;support&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;DefaultListableBeanFactory&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;springframework&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;beans&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;factory&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;xml&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;XmlBeanDefinitionReader&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;springframework&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;core&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;io&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;ClassPathResource&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Main&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; args&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+        &lt;span class=&quot;token class-name&quot;&gt;DefaultListableBeanFactory&lt;/span&gt; factory &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DefaultListableBeanFactory&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;token class-name&quot;&gt;XmlBeanDefinitionReader&lt;/span&gt; xmlBeanDefinitionReader &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;XmlBeanDefinitionReader&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;factory&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        xmlBeanDefinitionReader&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;loadBeanDefinitions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ClassPathResource&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;beans.xml&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;token class-name&quot;&gt;MyTestBean&lt;/span&gt; bean &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;MyTestBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; factory&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;myTestBean&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;token class-name&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;out&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;bean&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getTestStr&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;运行，可以看到 Console 输出：&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/0940f/5.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 36.91507798960139%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAAA50lEQVQoz62OXWuDMBSG8///2W4KXsgUnVaTmMZM40e1gya+S8JktdBd7cDD+5yXcAhJswLvBcMprfAWpYhLgTNXqLhESR1MuWwDZ+fP7P2eJKclCsrxwXucYo44k6gqBSFGcD7gchnd3oMxHbxpBig1B7w/QqkGqRl1DwWu84TlOmGeBgyDxqvZtl28b4fO74QzjjzP0HUTus8bxvHL5YpWzmjb2fULtF6D985/j/wkjkmapkEURe5XI6zdcL+bByyMx9iw+/SH/oIIIZAkCZZlwX8MkVKirmus6xoKa+0BY0zguX/FN7/2GjToE550AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;result&quot;
+        title=&quot;&quot;
+        src=&quot;https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/fcda8/5.png&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/12f09/5.png 148w,https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/e4a3f/5.png 295w,https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/fcda8/5.png 590w,https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/efc66/5.png 885w,https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/0940f/5.png 1154w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2 id=&quot;入门-bean-factory&quot;&gt;&lt;a href=&quot;#%E5%85%A5%E9%97%A8-bean-factory&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;入门 Bean Factory&lt;/h2&gt;
+&lt;p&gt;从示例代码里看到，用 DefaultListableBeanFactory， 这个示 Spring 默认的 BeanFactory，&lt;/p&gt;
+&lt;p&gt;  Spring’s default implementation of the {@link ConfigurableListableBeanFactory}
+and {@link BeanDefinitionRegistry} interfaces: a full-fledged bean factory
+based on bean definition metadata, extensible through post-processors.&lt;/p&gt;
+&lt;p&gt;而 BeanFactory 需要有一个 BeanDefinitionReader，通过 Reader 来加载 Beans。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;# &lt;span class=&quot;token class-name&quot;&gt;XmlBeanDefinitionReader&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;java
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;loadBeanDefinitions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;EncodedResource&lt;/span&gt; encodedResource&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeanDefinitionStoreException&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token class-name&quot;&gt;Assert&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;notNull&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;encodedResource&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;EncodedResource must not be null&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;logger&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;isTraceEnabled&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			logger&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;trace&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Loading XML bean definitions from &quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; encodedResource&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;doLoadBeanDefinitions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;inputSource&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; encodedResource&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getResource&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+
+# doLoadBeanDefinitions 由调用了 registerBeanDefinitions
+
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;registerBeanDefinitions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Document&lt;/span&gt; doc&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Resource&lt;/span&gt; resource&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeanDefinitionStoreException&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token class-name&quot;&gt;BeanDefinitionDocumentReader&lt;/span&gt; documentReader &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;createBeanDefinitionDocumentReader&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; countBefore &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getRegistry&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getBeanDefinitionCount&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+	documentReader&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;registerBeanDefinitions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;doc&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;createReaderContext&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;resource&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getRegistry&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getBeanDefinitionCount&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; countBefore&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里又调用了一个 DefaultBeanDefinitionDocumentReader 的 registerBeanDefinitions， 这个是默认的 Reader，&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;	&lt;span class=&quot;token comment&quot;&gt;/**
+	 * Register each bean definition within the given root {@code &amp;lt;beans/&gt;} element.
+	 */&lt;/span&gt;
+	&lt;span class=&quot;token annotation punctuation&quot;&gt;@SuppressWarnings&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;deprecation&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;// for Environment.acceptsProfiles(String...)&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;doRegisterBeanDefinitions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Element&lt;/span&gt; root&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token comment&quot;&gt;// Any nested &amp;lt;beans&gt; elements will cause recursion in this method. In&lt;/span&gt;
+		&lt;span class=&quot;token comment&quot;&gt;// order to propagate and preserve &amp;lt;beans&gt; default-* attributes correctly,&lt;/span&gt;
+		&lt;span class=&quot;token comment&quot;&gt;// keep track of the current (parent) delegate, which may be null. Create&lt;/span&gt;
+		&lt;span class=&quot;token comment&quot;&gt;// the new (child) delegate with a reference to the parent for fallback purposes,&lt;/span&gt;
+		&lt;span class=&quot;token comment&quot;&gt;// then ultimately reset this.delegate back to its original (parent) reference.&lt;/span&gt;
+		&lt;span class=&quot;token comment&quot;&gt;// this behavior emulates a stack of delegates without actually necessitating one.&lt;/span&gt;
+		&lt;span class=&quot;token class-name&quot;&gt;BeanDefinitionParserDelegate&lt;/span&gt; parent &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;delegate&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;delegate &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;createDelegate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getReaderContext&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; root&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; parent&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+		&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;delegate&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;isDefaultNamespace&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; profileSpec &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; root&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;PROFILE_ATTRIBUTE&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+			&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;StringUtils&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;hasText&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;profileSpec&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+				&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; specifiedProfiles &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;StringUtils&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;tokenizeToStringArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+						profileSpec&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeanDefinitionParserDelegate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;MULTI_VALUE_ATTRIBUTE_DELIMITERS&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+				&lt;span class=&quot;token comment&quot;&gt;// We cannot use Profiles.of(...) since profile expressions are not supported&lt;/span&gt;
+				&lt;span class=&quot;token comment&quot;&gt;// in XML config. See SPR-12458 for details.&lt;/span&gt;
+				&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getReaderContext&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getEnvironment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;acceptsProfiles&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;specifiedProfiles&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+					&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;logger&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;isDebugEnabled&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+						logger&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Skipped XML bean definition file due to specified profiles [&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; profileSpec &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;
+								&lt;span class=&quot;token string&quot;&gt;&quot;] not matching: &quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getReaderContext&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getResource&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+					&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+					&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+				&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+			&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+		&lt;span class=&quot;token function&quot;&gt;preProcessXml&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;parseBeanDefinitions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;delegate&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;postProcessXml&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+		&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;delegate &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; parent&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;今天代码读不动了，下次继续。。。&lt;/p&gt;
+                &lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at blog.fengqijun.me. You can read it online by &lt;a href=&quot;https://blog.fengqijun.me/spring-framework-components-one-beans/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+              </content:encoded></item><item><title><![CDATA[Setup Raspberry AS Media Library For Your Apple TV]]></title><description><![CDATA[把 Raspberry 设置为一个 Plex Server， 配置 Infuse Pro， 可以作为 Apple TV 的媒体库]]></description><link>https://blog.fengqijun.me/set-raspberry-pi-as-a-plex-server/</link><guid isPermaLink="false">https://blog.fengqijun.me/set-raspberry-pi-as-a-plex-server/</guid><pubDate>Fri, 31 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;在安装 Plex Server 之前，先把系统升级到最新版。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; update
+&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; upgrade&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后添加 Plex Server 的官方代码库。在这之前还需要安装 apt-transport-https 包，来支持 apt 包管理软件从 https 读取包。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; apt-transport-https&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;添加安装源&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; https://downloads.plex.tv/plex-keys/PlexSign.key &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; apt-key &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; -&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; deb https://downloads.plex.tv/repo/deb public main &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;tee&lt;/span&gt; /etc/apt/sources.list.d/plexmediaserver.list&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; update&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; plexmediaserver&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;默认情况下， plex media server 是以 plex 这个用户运行的，为了避免由于匿名用户造成的权限问题，把它改成以 pi 的用户身份运行。&lt;/p&gt;
+&lt;p&gt;找到 /etc/default/plexmediaserver, 把 plex 改成 pi&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;PLEX_MEDIA_SERVER_USER&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;pi&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;重启生效&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; systemctl restart plexmediaserver&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;设置固定-ip-地址&quot;&gt;&lt;a href=&quot;#%E8%AE%BE%E7%BD%AE%E5%9B%BA%E5%AE%9A-ip-%E5%9C%B0%E5%9D%80&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;设置固定 IP 地址&lt;/h2&gt;
+&lt;p&gt;作为一个资源库，当然是需要有一个固定 IP 会比较好，免得重启之后引起冲突&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;hostname&lt;/span&gt; -I
+
+&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;vi&lt;/span&gt; /boot/cmdline.txt
+
+&lt;span class=&quot;token assign-left variable&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;YOUR IP&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;把 IP 设置为你的 IP， 然后重启树莓派&lt;/p&gt;
+&lt;h2 id=&quot;访问-web-站点&quot;&gt;&lt;a href=&quot;#%E8%AE%BF%E9%97%AE-web-%E7%AB%99%E7%82%B9&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;访问 Web 站点&lt;/h2&gt;
+&lt;p&gt;我的 IP 地址是 192.168.3.52, 所以访问的地址是: &lt;a href=&quot;http://192.168.3.52:32400/web/index.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;http://192.168.3.52:32400/web/index.html&lt;/a&gt;,  我已经添加了不少资源&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/fc6fd/1.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 76.71840354767184%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIDBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHnzrNgH//EABkQAAIDAQAAAAAAAAAAAAAAAAABERIhMf/aAAgBAQABBQKDG6oXW4NP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFxABAQEBAAAAAAAAAAAAAAAAADEBEP/aAAgBAQAGPwJE5Ex//8QAGhABAAMBAQEAAAAAAAAAAAAAAQARQSFhcf/aAAgBAQABPyGpCga9gmoxMNc4l4o+z//aAAwDAQACAAMAAAAQVw//xAAXEQADAQAAAAAAAAAAAAAAAAAAAREx/9oACAEDAQE/EJNKj//EABYRAQEBAAAAAAAAAAAAAAAAAAAhQf/aAAgBAgEBPxDYr//EABgQAQEBAQEAAAAAAAAAAAAAAAERIQBR/9oACAEBAAE/EBaooFnRyfTy/MGOcSNjj1a+KbvTWROaL3//2Q==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;web admin&quot;
+        title=&quot;&quot;
+        src=&quot;https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/1c72d/1.jpg&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/a80bd/1.jpg 148w,https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/1c91a/1.jpg 295w,https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/1c72d/1.jpg 590w,https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/a8a14/1.jpg 885w,https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/fc6fd/1.jpg 902w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;鼠标放到 播放列表 上，会出现添加按钮， 可以把想要添加进来的电影都添加进来&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/272bf/2.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 72.71487039563438%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAeVc0KP/xAAWEAEBAQAAAAAAAAAAAAAAAAARABD/2gAIAQEAAQUCdIi//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFhAAAwAAAAAAAAAAAAAAAAAAACAx/9oACAEBAAY/Air/AP/EABkQAQADAQEAAAAAAAAAAAAAAAEAEBEhMf/aAAgBAQABPyE09o+8dgqLGf/aAAwDAQACAAMAAAAQgA//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAaEAEAAwEBAQAAAAAAAAAAAAABABEhMWGR/9oACAEBAAE/EHa+BkzfjOxUigca7AXdQSgVbkWDVns//9k=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;add library&quot;
+        title=&quot;&quot;
+        src=&quot;https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/1c72d/2.jpg&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/a80bd/2.jpg 148w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/1c91a/2.jpg 295w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/1c72d/2.jpg 590w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/a8a14/2.jpg 885w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/fbd2c/2.jpg 1180w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/272bf/2.jpg 1466w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2 id=&quot;iphoneipadapple-tv-上使用&quot;&gt;&lt;a href=&quot;#iphoneipadapple-tv-%E4%B8%8A%E4%BD%BF%E7%94%A8&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;iPhone/iPad/Apple TV 上使用&lt;/h2&gt;
+&lt;p&gt;在 iPhone， iPad 或者 Apple TV 上使用，需要购买 Infuse Pro 这个软件，我记得是50块钱，但是物超所值。 这是在我的 iPhone 上，只要你在家里，随时随地可以看。&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/b2cd5/3.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 216.42512077294685%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAArABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMFBAL/xAAWAQEBAQAAAAAAAAAAAAAAAAACAAH/2gAMAwEAAhADEAAAAbDI+dG+QQ7X5SutRkN2XpuIMkoCH//EABwQAAICAwEBAAAAAAAAAAAAAAECAAMREhMhMf/aAAgBAQABBQLb3M8llRDHAlTDUtVCKCBwEel4KbZxsjrZ0p6hcmN8ViWn/8QAGREAAgMBAAAAAAAAAAAAAAAAAAEQERIh/9oACAEDAQE/AbZ2KjKP/8QAGBEAAwEBAAAAAAAAAAAAAAAAABAhARH/2gAIAQIBAT8B5hFFD//EACEQAAIBAwQDAQAAAAAAAAAAAAABERIhMQIDEEFRcYGx/9oACAEBAAY/Aoh8z0Lw+x+y7RDpgtSOkUoxP03Lbnf6JRriTGoZnj//xAAgEAEAAgICAgMBAAAAAAAAAAABABEhUTFBcZEQgaHB/9oACAEBAAE/IQcRnllNnuGj+xn3KxmkgdgfpLr5tsyG6QBVBEOJHIPTcIUb7ybjfjyM4JzdH0iygcG9xv8A5RUxqHB+H//aAAwDAQACAAMAAAAQ+9DBDB//xAAZEQEBAQADAAAAAAAAAAAAAAABEQAQUWH/2gAIAQMBAT8QowMeNUMPvQleL//EABsRAQACAgMAAAAAAAAAAAAAAAEAERAhMXGh/9oACAECAQE/ENVrFDVyh4y6ez//xAAiEAEBAAICAQMFAAAAAAAAAAABEQAhMUFxUWGBkaGxwfH/2gAIAQEAAT8QOtshlPPPGfxmQsPv/eOtF53tcS2j4E98dkCo6UhvIU8V8mfnIgTw+MHkTgMtpatNBfZJco17gjtx4w8D6ob8Y9XDJIJE+jI/doyztxrRluPv1YzSPbK0CPRnABoz/9k=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;library&quot;
+        title=&quot;&quot;
+        src=&quot;https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/1c72d/3.jpg&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/a80bd/3.jpg 148w,https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/1c91a/3.jpg 295w,https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/1c72d/3.jpg 590w,https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/b2cd5/3.jpg 828w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/b2cd5/4.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 216.42512077294685%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAArABQDASIAAhEBAxEB/8QAGQABAQEBAQEAAAAAAAAAAAAAAgABAwQF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB+5pZkoCCNqCufI9MY//EABkQAAMAAwAAAAAAAAAAAAAAAAABAhEwMf/aAAgBAQABBQIRgYtdcmm6P//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BX//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BX//EABQQAQAAAAAAAAAAAAAAAAAAAED/2gAIAQEABj8CF//EAB8QAAIBBAIDAAAAAAAAAAAAAAABERAxQYEhUWFxof/aAAgBAQABPyGIEeX8IIuLKZ7NmzNo9E+DSM8tF8kPsZp2iON8U//aAAwDAQACAAMAAAAQo8KAK+//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/EF//xAAWEQADAAAAAAAAAAAAAAAAAAAAESD/2gAIAQIBAT8QlH//xAAhEAEAAgEDBAMAAAAAAAAAAAABABEhEDFRQWFxoZHh8P/aAAgBAQABPxACaG3dpYgsErbCFyrz3ZjavX0yuYBzitFw2XJ0lvGW8ZSXxe3qeL4ZmCcZ0/XBdhfGgVykLIQtocUaf//Z&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;add&quot;
+        title=&quot;&quot;
+        src=&quot;https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/1c72d/4.jpg&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/a80bd/4.jpg 148w,https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/1c91a/4.jpg 295w,https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/1c72d/4.jpg 590w,https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/b2cd5/4.jpg 828w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+                &lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at blog.fengqijun.me. You can read it online by &lt;a href=&quot;https://blog.fengqijun.me/set-raspberry-pi-as-a-plex-server/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+              </content:encoded></item><item><title><![CDATA[Java 集合]]></title><description><![CDATA[Java 集合类型分解]]></description><link>https://blog.fengqijun.me/java-collection/</link><guid isPermaLink="false">https://blog.fengqijun.me/java-collection/</guid><pubDate>Mon, 20 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;集合是我们平常用的最多的数据类型了，并且自带很多常用方法，比如 sort 等，&lt;/p&gt;
 &lt;h1 id=&quot;collection&quot;&gt;&lt;a href=&quot;#collection&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Collection&lt;/h1&gt;
 &lt;p&gt;Collection 接口是 Java 集合体系的根，可以说所有的集合都实现了这个接口。 Collection 扩展/继承了 Iterable 接口， 而 Iterable 就是 Java 中经典的 Iterator 模式。&lt;/p&gt;
 &lt;p&gt;Collection 下面分为三个大的部分，List， Queue 和 Set。 总体结构图如下所示：&lt;/p&gt;
@@ -159,15 +559,15 @@ bin/kafka-server-start.sh config/server-2.properties&lt;/code&gt;&lt;/pre&gt;&lt
 就不可用。&lt;/p&gt;
 &lt;h3 id=&quot;修改-consumer_offsets-replication-数&quot;&gt;&lt;a href=&quot;#%E4%BF%AE%E6%94%B9-consumer_offsets-replication-%E6%95%B0&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;修改 consumer_offsets Replication 数&lt;/h3&gt;
 &lt;p&gt;修改 consumer_offsets 的 replication factor，需要用到 kafka 的 reassignment 功能， 这时需要自己提供一个 assignment json 文件。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsxon&quot;&gt;&lt;pre class=&quot;language-jsxon&quot;&gt;&lt;code class=&quot;language-jsxon&quot;&gt;{
-  &amp;quot;version&amp;quot;: 1,
-  &amp;quot;partitions&amp;quot;: [
-    { &amp;quot;topic&amp;quot;: &amp;quot;__consumer_offsets&amp;quot;, &amp;quot;partition&amp;quot;: 0, &amp;quot;replicas&amp;quot;: [1, 2, 3] },
-    { &amp;quot;topic&amp;quot;: &amp;quot;__consumer_offsets&amp;quot;, &amp;quot;partition&amp;quot;: 1, &amp;quot;replicas&amp;quot;: [1, 2, 3] },
-    { &amp;quot;topic&amp;quot;: &amp;quot;__consumer_offsets&amp;quot;, &amp;quot;partition&amp;quot;: 2, &amp;quot;replicas&amp;quot;: [1, 2, 3] },
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;partitions&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;topic&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;__consumer_offsets&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;partition&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;replicas&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;topic&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;__consumer_offsets&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;partition&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;replicas&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;topic&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;__consumer_offsets&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;partition&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;replicas&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
     ...
-  ]
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;完整的 json 文件可以在这里下载： &lt;a href=&quot;https://gist.github.com/jun1st/31aaf1ebe6c93c4a11079073512a9c30&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;gist&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;执行修改：&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bin/kafka-reassign-partitions.sh --zookeeper localhost:2181 --reassignment-json-file __consumer_offsets.json --execute&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
