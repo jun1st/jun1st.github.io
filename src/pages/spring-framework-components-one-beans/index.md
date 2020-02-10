@@ -176,4 +176,8 @@ public int registerBeanDefinitions(Document doc, Resource resource) throws BeanD
 	}
 ```
 
+大体上的调用关系如这个图，
+
+![beans call stack](6.jpg)
+
 今天代码读不动了，下次继续。。。
