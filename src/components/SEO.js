@@ -74,7 +74,7 @@ function SEO({ meta, image, title, description, slug, lang = 'en' }) {
               },
               {
                 name: 'google-site-verification',
-                content: 'google6a8da22ca33e633d.html',
+                content: '6eQzaW9rscW4PmlmgVOH7KqrMYzcErndpOr0IYy7h0g',
               },
             ]
               .concat(
