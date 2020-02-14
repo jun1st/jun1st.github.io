@@ -72,6 +72,10 @@ function SEO({ meta, image, title, description, slug, lang = 'en' }) {
                 name: 'twitter:description',
                 content: metaDescription,
               },
+              {
+                name: 'google-site-verification',
+                content: 'google6a8da22ca33e633d.html',
+              },
             ]
               .concat(
                 metaImage
