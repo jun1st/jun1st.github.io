@@ -37,7 +37,7 @@ function SEO({ meta, image, title, description, slug, lang = 'en' }) {
                   title,
                 }
               : {
-                  title: `${siteMetadata.title} — A blog by Dan Abramov`,
+                  title: `${siteMetadata.title} — A blog by Feng Qijun`,
                 })}
             meta={[
               {
@@ -71,6 +71,10 @@ function SEO({ meta, image, title, description, slug, lang = 'en' }) {
               {
                 name: 'twitter:description',
                 content: metaDescription,
+              },
+              {
+                name: 'google-site-verification',
+                content: '6eQzaW9rscW4PmlmgVOH7KqrMYzcErndpOr0IYy7h0g',
               },
             ]
               .concat(
