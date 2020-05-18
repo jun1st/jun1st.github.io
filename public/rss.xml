@@ -1,4 +1,118 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[fengd' Blog RSS Feed]]></title><description><![CDATA[Personal log by fengd. ]]></description><link>https://blog.fengqijun.me</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 14 Feb 2020 01:23:00 GMT</lastBuildDate><item><title><![CDATA[Java 集合之 Map]]></title><description><![CDATA[Java 集合类型补充之 Map]]></description><link>https://blog.fengqijun.me/java-collection-map/</link><guid isPermaLink="false">https://blog.fengqijun.me/java-collection-map/</guid><pubDate>Wed, 12 Feb 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Java 中的 Map 实际上并不属于 Java Collection，因为他并没有继承自 Collection 接口。 在 Java 中，Map 是一个接口&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[fengd' Blog RSS Feed]]></title><description><![CDATA[Personal log by fengd. ]]></description><link>https://blog.fengqijun.me</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 18 May 2020 06:52:03 GMT</lastBuildDate><item><title><![CDATA[Key Kafka Parameters You Need To Understand]]></title><description><![CDATA[搭建 Kafka 集群时，需要考虑的除了硬件和服务器设置，当然还有 Kafka 本身。本文介绍一下需要掌握的最关键的 Kafka 参数]]></description><link>https://blog.fengqijun.me/kafka-server-parameters-you-need-to-understand/</link><guid isPermaLink="false">https://blog.fengqijun.me/kafka-server-parameters-you-need-to-understand/</guid><pubDate>Mon, 18 May 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;关键-kafka-参数&quot;&gt;&lt;a href=&quot;#%E5%85%B3%E9%94%AE-kafka-%E5%8F%82%E6%95%B0&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;关键 Kafka 参数&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;broker.id&lt;/code&gt;: 每个 Kafka Broker 都需要有一个唯一的 Id&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;port&lt;/code&gt;: 这是 Kafka 监听的端口，也就是客户端使用的端口&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;zookeeper.connect&lt;/code&gt;: 这是 zookeeper 的地址，&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;log.dirs&lt;/code&gt;: 这个是 Kafka 存储数据的地方&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;auto.create.topics.enable&lt;/code&gt;: 是否允许自动创建 topic&lt;/p&gt;
+&lt;h2 id=&quot;关键-topic-参数&quot;&gt;&lt;a href=&quot;#%E5%85%B3%E9%94%AE-topic-%E5%8F%82%E6%95%B0&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;关键 Topic 参数&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;num.partitions&lt;/code&gt;: 一个 topic 有几个 partitions。 默认参数是 1。 Partition 的数量，决定了这个 topic 的性能，当然这个不是越多越好，跟整个集群的 broker 的数量和这个 topic 的吞吐量有关&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;log.retention.ms&lt;/code&gt;: 这个参数决定了被写到硬盘种的消息数据会被保存多久。 同样的参数还有 &lt;code class=&quot;language-text&quot;&gt;log.retention.minutes&lt;/code&gt; 和 &lt;code class=&quot;language-text&quot;&gt;log.renention.hours&lt;/code&gt;。 单位小的优先级高， 就是说 &lt;code class=&quot;language-text&quot;&gt;log.retention.ms&lt;/code&gt; &gt; &lt;code class=&quot;language-text&quot;&gt;log.retention.minutes&lt;/code&gt; &gt; &lt;code class=&quot;language-text&quot;&gt;log.retention.hours&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;log.retention.bytes&lt;/code&gt;: 这个参数和上面的参数功能类似，决定了写到磁盘的历史消息保留多久。 需要注意的是本参数的对象是 partition， 如果 &lt;code class=&quot;language-text&quot;&gt;log.retention.bytes&lt;/code&gt; 设置为 1GB， 这个 topic 有8个 partition，那么这个 topic 最多可能存储 8 个 GB 的数据。&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;log.segment.bytes&lt;/code&gt;: 当一个消息被写到磁盘上时，消息会被追加到当前的 log 文件上，这个文件叫做一个 log segment。 当一个 log segment 达到设置的容量上限时，默认为 1 GB。 当前的 log 文件就会被关闭，一个新的 log 文件会被创建。只有当一个 log 文件被认为是关闭时，前面设置的 retention 才会起作用，才可能会被认为过期。 因此这个 segment bytes 非常重要。 比如一个 topic 一天收到 100 MB 的消息数据。那么 10 天会填满一个 segment， 10 天之后这个 segment 会关闭。关闭7天之后，这个 segment 可以被 retired， 因此总的存在时间会是 17 天。&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;log.segment.ms&lt;/code&gt;: 这个设置确定了一个 segment，多久时间之后可以背关闭。 这个和上面的 bytes 两者是或者的关系，只要其中一个条件满足，这个 log segment 就可以被关闭，等待 retired&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;message.max.bytes&lt;/code&gt;: 这个是每条消息最大的允许的字节数，超过这个字节 kafka 会报异常给客户端。默认的大小是 1 MB。&lt;/p&gt;
+                &lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at blog.fengqijun.me. You can read it online by &lt;a href=&quot;https://blog.fengqijun.me/kafka-server-parameters-you-need-to-understand/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+              </content:encoded></item><item><title><![CDATA[Setup Hadoop Cluster in 2020]]></title><description><![CDATA[A step-by-step guide on how to setup a hadoop cluster.]]></description><link>https://blog.fengqijun.me/setup-hadoop-cluster-in-2020/</link><guid isPermaLink="false">https://blog.fengqijun.me/setup-hadoop-cluster-in-2020/</guid><pubDate>Fri, 17 Apr 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;2020-年了，为什么还是-hadoop&quot;&gt;&lt;a href=&quot;#2020-%E5%B9%B4%E4%BA%86%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E6%98%AF-hadoop&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2020 年了，为什么还是 Hadoop&lt;/h2&gt;
+&lt;p&gt;第一个问题就是，都已经 2020 年了，为什么还是 Hadoop？ 这玩意都出来这么多年了，难道就没有新的产品和技术吗？ Hadoop 虽然已经出来那么多年了，是一个老产品，但是 Hadoop 也不是当年的 Hadoop， 现在更像是一个生态系统，基于 Hadoop 的框架构建的各个产品和技术层出不穷， 但是 HDFS 还是那个 HDFS，学一下背后的细想，更有利于理解和掌握整个体系。&lt;/p&gt;
+&lt;h2 id=&quot;搭建-linux-集群&quot;&gt;&lt;a href=&quot;#%E6%90%AD%E5%BB%BA-linux-%E9%9B%86%E7%BE%A4&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;搭建 Linux 集群&lt;/h2&gt;
+&lt;p&gt;我选了 Ubuntu 系统，找了 3 台机器，1 个master， 2 个 slave。 首先登陆机器，修改主机名， 在 ubuntu 上修改的是 &lt;code class=&quot;language-text&quot;&gt;/etc/hostname&lt;/code&gt; 的配置，各自修改为 master, slave, slave2。 然后修改 &lt;code class=&quot;language-text&quot;&gt;/etc/hosts&lt;/code&gt;  文件， 配置上 ip 地址和各个别名。 3 台机器都要配置。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token number&quot;&gt;10.0&lt;/span&gt;.2.4 master
+&lt;span class=&quot;token number&quot;&gt;10.0&lt;/span&gt;.2.7 slave
+&lt;span class=&quot;token number&quot;&gt;10.0&lt;/span&gt;.2.6 slave2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;配置好别名之后，需要配置 master 和 slaves 之间的 ssh 免密登陆, 用 root 账户创建一个一致的叫做 hadoop 的账户，&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;useradd -m hadoop
+passwd hadoop # 设置个密码&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在 master 机器上，切换到 hadoop 用户，生成 SSH 公钥&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;ssh-keygen -t rsa&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后将公钥发送到各个 slave 节点上，包括自己&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;ssh-copy-id -i ~/.ssh/id_rsa.pub 
+ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@slave
+ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@slave2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这时候可以试一下 ssh 免密登陆&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;ssh&lt;/span&gt; master
+&lt;span class=&quot;token function&quot;&gt;ssh&lt;/span&gt; slave
+&lt;span class=&quot;token function&quot;&gt;ssh&lt;/span&gt; slave2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;应该能直接 ssh 到对应的机器上去了&lt;/p&gt;
+&lt;h2 id=&quot;安装-jdk-和-hadoop&quot;&gt;&lt;a href=&quot;#%E5%AE%89%E8%A3%85-jdk-%E5%92%8C-hadoop&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;安装 JDK 和 Hadoop&lt;/h2&gt;
+&lt;p&gt;下载 JDK 1.8 和 Hadoop 2.10.0， 我把这两个都放在 /opt 目录下， 并且把 /opt 目录的所有权修改为 hadoop（slave 节点也修改所有者）&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;chown&lt;/span&gt; -R hadoop /opt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;修改 &lt;code class=&quot;language-text&quot;&gt;/etc/profile&lt;/code&gt; 文件，在末尾添加&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/opt/jdk1.8.0_241
+&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;PATH&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token environment constant&quot;&gt;$PATH&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$JAVA_HOME&lt;/span&gt;/bin
+&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;HADOOP_HOME&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/opt/hadoop-2.10.0
+&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;PATH&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token environment constant&quot;&gt;$PATH&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$HADOOP_HOME&lt;/span&gt;/bin&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;配置 Hadoop， 修改的文件都位于 &lt;code class=&quot;language-text&quot;&gt;/opt/hadoop-2.10.0/etc/hadoop/&lt;/code&gt; 目录下， 修改 &lt;code class=&quot;language-text&quot;&gt;hadoop-env.sh&lt;/code&gt; 文件, 在末尾添加&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/opt/jdk1.8.0_241
+&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;HADOOP_HOME&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/opt/hadoop-2.10.0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;修改 &lt;code class=&quot;language-text&quot;&gt;hdfs-site.xml&lt;/code&gt;, 修改：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;xml&quot;&gt;&lt;pre class=&quot;language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;configuration&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+		&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;dfs.replication&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+		&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;3&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+		&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;dfs.name.dir&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+		&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;/opt/hdfs/name&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+		&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;dfs.data.dir&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+		&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;/opt/hdfs/data&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;configuration&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;修改 &lt;code class=&quot;language-text&quot;&gt;mapred-site.xml&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;xml&quot;&gt;&lt;pre class=&quot;language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;configuration&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+		&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;mapreduce.framework.name&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+		&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;yarn&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;configuration&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;修改 &lt;code class=&quot;language-text&quot;&gt;yarn-site.xml&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;xml&quot;&gt;&lt;pre class=&quot;language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;configuration&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;&amp;lt;!-- Site specific YARN configuration properties --&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;yarn.resourcemanager.address&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;master:8080&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;yarn.resourcemanager.resource-tracker.address&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;master:8082&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;yarn.nodemanager.aux-services&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;mapreduce_shuffle&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;yarn.nodemanager.aux-services.mapreduce.shuffle.class&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;org.apache.hadoop.mapred.ShuffleHandler&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;property&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+
+
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;configuration&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;再修改 &lt;code class=&quot;language-text&quot;&gt;slaves&lt;/code&gt; 文件, 里面配置 slave 节点的别名&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;slave
+slave1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;把修改后的 hadoop 复制到所有的 slave 节点上， &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;scp&lt;/span&gt; -r /opt/hadoop-2.10.0/ hadoop@slave:/opt
+&lt;span class=&quot;token function&quot;&gt;scp&lt;/span&gt; -r /opt/hadoop-2.10.0/ hadoop@slave2:/opt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;格式化-hdfs&quot;&gt;&lt;a href=&quot;#%E6%A0%BC%E5%BC%8F%E5%8C%96-hdfs&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;格式化 HDFS&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;hadoop namenode -format&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在 hadoop 安装目录下，sbin 目录里有各个文件的启动脚本，&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;./start-dfs.sh
+./start-yarn.sh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;启动过程会看到:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;starting &lt;span class=&quot;token function&quot;&gt;yarn&lt;/span&gt; daemons
+starting resourcemanager, logging to /opt/hadoop-2.10.0/logs/yarn-hadoop-resourcemanager-master.out
+slave: starting nodemanager, logging to /opt/hadoop-2.10.0/logs/yarn-hadoop-nodemanager-slave.out
+slave2: starting nodemanager, logging to /opt/hadoop-2.10.0/logs/yarn-hadoop-nodemanager-slave2.out&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;应该就启动成功，&lt;/p&gt;
+&lt;p&gt;一个 Hadoop Cluster 就装好了&lt;/p&gt;
+                &lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at blog.fengqijun.me. You can read it online by &lt;a href=&quot;https://blog.fengqijun.me/setup-hadoop-cluster-in-2020/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+              </content:encoded></item><item><title><![CDATA[Java 集合之 Map]]></title><description><![CDATA[Java 集合类型补充之 Map]]></description><link>https://blog.fengqijun.me/java-collection-map/</link><guid isPermaLink="false">https://blog.fengqijun.me/java-collection-map/</guid><pubDate>Wed, 12 Feb 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Java 中的 Map 实际上并不属于 Java Collection，因为他并没有继承自 Collection 接口。 在 Java 中，Map 是一个接口&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;An object that maps keys to values.  A map cannot contain duplicate keys;
 each key can map to at most one value.&lt;/p&gt;
@@ -12,7 +126,7 @@ interface, to minimize the effort required to implement this interface.&lt;/p&gt
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/c06f5/diagram.jpg&quot;
+    href=&quot;https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/bcb54/diagram.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -31,8 +145,8 @@ interface, to minimize the effort required to implement this interface.&lt;/p&gt
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;diagram&quot;
         title=&quot;&quot;
-        src=&quot;https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/1c72d/diagram.jpg&quot;
-        srcset=&quot;https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/a80bd/diagram.jpg 148w,https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/1c91a/diagram.jpg 295w,https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/1c72d/diagram.jpg 590w,https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/a8a14/diagram.jpg 885w,https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/fbd2c/diagram.jpg 1180w,https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/c06f5/diagram.jpg 1668w&quot;
+        src=&quot;https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/88218/diagram.jpg&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/7237a/diagram.jpg 148w,https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/0cfdf/diagram.jpg 295w,https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/88218/diagram.jpg 590w,https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/77d57/diagram.jpg 885w,https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/5a917/diagram.jpg 1180w,https://blog.fengqijun.me/static/fbc9883d7a0970929bfaf0570b936095/bcb54/diagram.jpg 1668w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
@@ -204,7 +318,7 @@ creation time, depending on which constructor is used.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/5d72a/1.png&quot;
+    href=&quot;https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/8bffd/1.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -223,8 +337,8 @@ creation time, depending on which constructor is used.&lt;/p&gt;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;structure&quot;
         title=&quot;&quot;
-        src=&quot;https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/fcda8/1.png&quot;
-        srcset=&quot;https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/12f09/1.png 148w,https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/e4a3f/1.png 295w,https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/fcda8/1.png 590w,https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/5d72a/1.png 834w&quot;
+        src=&quot;https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/799d3/1.png&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/00d96/1.png 148w,https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/0b23c/1.png 295w,https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/799d3/1.png 590w,https://blog.fengqijun.me/static/a30ecded89de24aa5504a9b28bff0bcc/8bffd/1.png 834w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
@@ -236,7 +350,7 @@ creation time, depending on which constructor is used.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/076ca/2.png&quot;
+    href=&quot;https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/27f60/2.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -255,8 +369,8 @@ creation time, depending on which constructor is used.&lt;/p&gt;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;module setting&quot;
         title=&quot;&quot;
-        src=&quot;https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/fcda8/2.png&quot;
-        srcset=&quot;https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/12f09/2.png 148w,https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/e4a3f/2.png 295w,https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/fcda8/2.png 590w,https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/efc66/2.png 885w,https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/076ca/2.png 914w&quot;
+        src=&quot;https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/799d3/2.png&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/00d96/2.png 148w,https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/0b23c/2.png 295w,https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/799d3/2.png 590w,https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/2a3d6/2.png 885w,https://blog.fengqijun.me/static/6d997f78656cf9d87c2a303238923ee4/27f60/2.png 914w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
@@ -268,7 +382,7 @@ creation time, depending on which constructor is used.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/8c48a/4.png&quot;
+    href=&quot;https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/21189/4.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -287,8 +401,8 @@ creation time, depending on which constructor is used.&lt;/p&gt;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;add jars&quot;
         title=&quot;&quot;
-        src=&quot;https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/fcda8/4.png&quot;
-        srcset=&quot;https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/12f09/4.png 148w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/e4a3f/4.png 295w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/fcda8/4.png 590w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/efc66/4.png 885w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/c83ae/4.png 1180w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/8c48a/4.png 2096w&quot;
+        src=&quot;https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/799d3/4.png&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/00d96/4.png 148w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/0b23c/4.png 295w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/799d3/4.png 590w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/2a3d6/4.png 885w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/ae92f/4.png 1180w,https://blog.fengqijun.me/static/1dc21233b6cd8c7633d3b1d719da575c/21189/4.png 2096w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
@@ -343,7 +457,7 @@ creation time, depending on which constructor is used.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/0940f/5.png&quot;
+    href=&quot;https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/d2508/5.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -362,8 +476,8 @@ creation time, depending on which constructor is used.&lt;/p&gt;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;result&quot;
         title=&quot;&quot;
-        src=&quot;https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/fcda8/5.png&quot;
-        srcset=&quot;https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/12f09/5.png 148w,https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/e4a3f/5.png 295w,https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/fcda8/5.png 590w,https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/efc66/5.png 885w,https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/0940f/5.png 1154w&quot;
+        src=&quot;https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/799d3/5.png&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/00d96/5.png 148w,https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/0b23c/5.png 295w,https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/799d3/5.png 590w,https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/2a3d6/5.png 885w,https://blog.fengqijun.me/static/252242b85c7efe4ad6c32245afe1e8bd/d2508/5.png 1154w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
@@ -440,7 +554,7 @@ based on bean definition metadata, extensible through post-processors.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/c06f5/6.jpg&quot;
+    href=&quot;https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/bcb54/6.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -459,8 +573,8 @@ based on bean definition metadata, extensible through post-processors.&lt;/p&gt;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;beans call stack&quot;
         title=&quot;&quot;
-        src=&quot;https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/1c72d/6.jpg&quot;
-        srcset=&quot;https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/a80bd/6.jpg 148w,https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/1c91a/6.jpg 295w,https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/1c72d/6.jpg 590w,https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/a8a14/6.jpg 885w,https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/fbd2c/6.jpg 1180w,https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/c06f5/6.jpg 1668w&quot;
+        src=&quot;https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/88218/6.jpg&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/7237a/6.jpg 148w,https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/0cfdf/6.jpg 295w,https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/88218/6.jpg 590w,https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/77d57/6.jpg 885w,https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/5a917/6.jpg 1180w,https://blog.fengqijun.me/static/020e770bd9ea1b3eec46487df1090016/bcb54/6.jpg 1668w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
@@ -498,7 +612,7 @@ based on bean definition metadata, extensible through post-processors.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/fc6fd/1.jpg&quot;
+    href=&quot;https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/48985/1.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -517,8 +631,8 @@ based on bean definition metadata, extensible through post-processors.&lt;/p&gt;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;web admin&quot;
         title=&quot;&quot;
-        src=&quot;https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/1c72d/1.jpg&quot;
-        srcset=&quot;https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/a80bd/1.jpg 148w,https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/1c91a/1.jpg 295w,https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/1c72d/1.jpg 590w,https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/a8a14/1.jpg 885w,https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/fc6fd/1.jpg 902w&quot;
+        src=&quot;https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/88218/1.jpg&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/7237a/1.jpg 148w,https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/0cfdf/1.jpg 295w,https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/88218/1.jpg 590w,https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/77d57/1.jpg 885w,https://blog.fengqijun.me/static/45f960471fe7862999177bbdb8cca4e4/48985/1.jpg 902w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
@@ -530,7 +644,7 @@ based on bean definition metadata, extensible through post-processors.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/272bf/2.jpg&quot;
+    href=&quot;https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/915af/2.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -549,8 +663,8 @@ based on bean definition metadata, extensible through post-processors.&lt;/p&gt;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;add library&quot;
         title=&quot;&quot;
-        src=&quot;https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/1c72d/2.jpg&quot;
-        srcset=&quot;https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/a80bd/2.jpg 148w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/1c91a/2.jpg 295w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/1c72d/2.jpg 590w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/a8a14/2.jpg 885w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/fbd2c/2.jpg 1180w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/272bf/2.jpg 1466w&quot;
+        src=&quot;https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/88218/2.jpg&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/7237a/2.jpg 148w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/0cfdf/2.jpg 295w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/88218/2.jpg 590w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/77d57/2.jpg 885w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/5a917/2.jpg 1180w,https://blog.fengqijun.me/static/57c93b77bf88780a154e77c0889cce0a/915af/2.jpg 1466w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
@@ -563,7 +677,7 @@ based on bean definition metadata, extensible through post-processors.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/b2cd5/3.jpg&quot;
+    href=&quot;https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/04daa/3.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -582,8 +696,8 @@ based on bean definition metadata, extensible through post-processors.&lt;/p&gt;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;library&quot;
         title=&quot;&quot;
-        src=&quot;https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/1c72d/3.jpg&quot;
-        srcset=&quot;https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/a80bd/3.jpg 148w,https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/1c91a/3.jpg 295w,https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/1c72d/3.jpg 590w,https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/b2cd5/3.jpg 828w&quot;
+        src=&quot;https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/88218/3.jpg&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/7237a/3.jpg 148w,https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/0cfdf/3.jpg 295w,https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/88218/3.jpg 590w,https://blog.fengqijun.me/static/8bf1ad1a5be497dabb565981c12972f4/04daa/3.jpg 828w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
@@ -594,7 +708,7 @@ based on bean definition metadata, extensible through post-processors.&lt;/p&gt;
 
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/b2cd5/4.jpg&quot;
+    href=&quot;https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/04daa/4.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -613,8 +727,8 @@ based on bean definition metadata, extensible through post-processors.&lt;/p&gt;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;add&quot;
         title=&quot;&quot;
-        src=&quot;https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/1c72d/4.jpg&quot;
-        srcset=&quot;https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/a80bd/4.jpg 148w,https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/1c91a/4.jpg 295w,https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/1c72d/4.jpg 590w,https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/b2cd5/4.jpg 828w&quot;
+        src=&quot;https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/88218/4.jpg&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/7237a/4.jpg 148w,https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/0cfdf/4.jpg 295w,https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/88218/4.jpg 590w,https://blog.fengqijun.me/static/07caddf29b957aa53d8cff4690dcc635/04daa/4.jpg 828w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
@@ -630,7 +744,7 @@ based on bean definition metadata, extensible through post-processors.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;https://blog.fengqijun.me/static/e1500d95bf05f9bbbb6e060d3f3314c5/cda19/collection-diagram.png&quot;
+    href=&quot;https://blog.fengqijun.me/static/e1500d95bf05f9bbbb6e060d3f3314c5/6e706/collection-diagram.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -649,8 +763,8 @@ based on bean definition metadata, extensible through post-processors.&lt;/p&gt;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;diagram&quot;
         title=&quot;&quot;
-        src=&quot;https://blog.fengqijun.me/static/e1500d95bf05f9bbbb6e060d3f3314c5/fcda8/collection-diagram.png&quot;
-        srcset=&quot;https://blog.fengqijun.me/static/e1500d95bf05f9bbbb6e060d3f3314c5/12f09/collection-diagram.png 148w,https://blog.fengqijun.me/static/e1500d95bf05f9bbbb6e060d3f3314c5/e4a3f/collection-diagram.png 295w,https://blog.fengqijun.me/static/e1500d95bf05f9bbbb6e060d3f3314c5/fcda8/collection-diagram.png 590w,https://blog.fengqijun.me/static/e1500d95bf05f9bbbb6e060d3f3314c5/cda19/collection-diagram.png 785w&quot;
+        src=&quot;https://blog.fengqijun.me/static/e1500d95bf05f9bbbb6e060d3f3314c5/799d3/collection-diagram.png&quot;
+        srcset=&quot;https://blog.fengqijun.me/static/e1500d95bf05f9bbbb6e060d3f3314c5/00d96/collection-diagram.png 148w,https://blog.fengqijun.me/static/e1500d95bf05f9bbbb6e060d3f3314c5/0b23c/collection-diagram.png 295w,https://blog.fengqijun.me/static/e1500d95bf05f9bbbb6e060d3f3314c5/799d3/collection-diagram.png 590w,https://blog.fengqijun.me/static/e1500d95bf05f9bbbb6e060d3f3314c5/6e706/collection-diagram.png 785w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
@@ -1137,14 +1251,6 @@ docker run -d --name some-clickhouse-server --ulimit &lt;span class=&quot;token 
 &lt;p&gt;&lt;img src=&quot;https://blog.fengqijun.me/static/assets/images/tabix-ui.png&quot; alt=&quot;tabix ui&quot;&gt;&lt;/p&gt;
 &lt;p&gt;开始吧&lt;/p&gt;
                 &lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at blog.fengqijun.me. You can read it online by &lt;a href=&quot;https://blog.fengqijun.me/clickhouse-serials-one-introduction/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
-              </content:encoded></item><item><title><![CDATA[IntelliJ Idea Cannot Open Project on Catalina Beta 5]]></title><description><![CDATA[IntelliJ Idea Cannot Open Project on Catalina, IntelliJ Idea 无法在 Catalina Beta 5 上打开项目]]></description><link>https://blog.fengqijun.me/intellij-idea-problems-on-catalina/</link><guid isPermaLink="false">https://blog.fengqijun.me/intellij-idea-problems-on-catalina/</guid><pubDate>Sun, 18 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Just upgrade my IntelliJ Idea to the latest version, 2019.02, then everything breaks.
-You cannot open any recent projects or folders, nothing happens.
-First thing first, here is the workaround:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;-Dide.mac.file.chooser.native=false&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;in Help | Edit Custom VM Options and restart the IDE, which disable using native file chooser.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/max/1400/1*7cfCco8bbueYVkQ6BuUbHg.png&quot; alt=&quot;Editor VM Options&quot;&gt;&lt;/p&gt;
-&lt;p&gt;It’s a bug of Catalina, NSSavePanel doesn’t call completionHandler on exit.&lt;/p&gt;
-                &lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at blog.fengqijun.me. You can read it online by &lt;a href=&quot;https://blog.fengqijun.me/intellij-idea-problems-on-catalina/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
               </content:encoded></item><item><title><![CDATA[OS X Catalina Beta 3 修复 Karabiner]]></title><description><![CDATA[OS X Catalina Beta 3 修复 Karabiner]]></description><link>https://blog.fengqijun.me/karabina-elements-on-catalina-beta/</link><guid isPermaLink="false">https://blog.fengqijun.me/karabina-elements-on-catalina-beta/</guid><pubDate>Sun, 18 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;为了尝试下 SwiftUI，升到了 Catalina Beta 3， 基本都没什么问题，只是 Karabiner 这个软件不正常了。 Karabiner
 是用来修改键位的，我把 Capslock 键键值修改为 F19， 再把 F19 设置为启动 Alfred 的热键，等于连用习惯的 Alfred 也废了～&lt;/p&gt;
 &lt;p&gt;由于 Catalina 改了安全策略，变得更加严格，因此猜测是权限隐私问题，赋予 Karabiner 相应的权限，应该就能解决问题。&lt;/p&gt;
@@ -1160,6 +1266,14 @@ First thing first, here is the workaround:&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/beta?source=post&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Beta&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
                 &lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at blog.fengqijun.me. You can read it online by &lt;a href=&quot;https://blog.fengqijun.me/karabina-elements-on-catalina-beta/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+              </content:encoded></item><item><title><![CDATA[IntelliJ Idea Cannot Open Project on Catalina Beta 5]]></title><description><![CDATA[IntelliJ Idea Cannot Open Project on Catalina, IntelliJ Idea 无法在 Catalina Beta 5 上打开项目]]></description><link>https://blog.fengqijun.me/intellij-idea-problems-on-catalina/</link><guid isPermaLink="false">https://blog.fengqijun.me/intellij-idea-problems-on-catalina/</guid><pubDate>Sun, 18 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Just upgrade my IntelliJ Idea to the latest version, 2019.02, then everything breaks.
+You cannot open any recent projects or folders, nothing happens.
+First thing first, here is the workaround:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;-Dide.mac.file.chooser.native=false&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;in Help | Edit Custom VM Options and restart the IDE, which disable using native file chooser.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/max/1400/1*7cfCco8bbueYVkQ6BuUbHg.png&quot; alt=&quot;Editor VM Options&quot;&gt;&lt;/p&gt;
+&lt;p&gt;It’s a bug of Catalina, NSSavePanel doesn’t call completionHandler on exit.&lt;/p&gt;
+                &lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at blog.fengqijun.me. You can read it online by &lt;a href=&quot;https://blog.fengqijun.me/intellij-idea-problems-on-catalina/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
               </content:encoded></item><item><title><![CDATA[Spring Boot 集成 Quartz 任务处理]]></title><description><![CDATA[Spring Boot 集成 Quartz 任务处理，详细介绍了 Quartz 的各种策略]]></description><link>https://blog.fengqijun.me/spring-boot-integrate-scheduler-quartz/</link><guid isPermaLink="false">https://blog.fengqijun.me/spring-boot-integrate-scheduler-quartz/</guid><pubDate>Wed, 15 May 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Spring 框架自带定时任务功能，虽然看上去挺简单的，但是也能处理大部分日常的任务了。 如果想要对任务处理有更多的控制，更多的自定义的东西，那么可以考虑使用 Quartz， 如果想要有分布式处理的能力，可以使用 elastic job。 本文介绍如何集成 Spring Boot 和 Quartz&lt;/p&gt;
 &lt;h2 id=&quot;安装-maven-依赖&quot;&gt;&lt;a href=&quot;#%E5%AE%89%E8%A3%85-maven-%E4%BE%9D%E8%B5%96&quot; aria-hidden class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;安装 maven 依赖&lt;/h2&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;xml&quot;&gt;&lt;pre class=&quot;language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
