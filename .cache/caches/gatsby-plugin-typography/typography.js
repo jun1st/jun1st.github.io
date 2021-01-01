@@ -1,1 +1,1 @@
-module.exports = require("/Users/fengqijun/Documents/workspace/jun1st-blog/src/utils/typography")
+module.exports = require("/Users/fengqijun/Documents/GitHub/jun1st.github.io/src/utils/typography")

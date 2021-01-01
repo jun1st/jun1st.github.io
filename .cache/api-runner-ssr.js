@@ -1,20 +1,20 @@
 var plugins = [{
-      plugin: require('/Users/fengqijun/Documents/workspace/jun1st-blog/node_modules/gatsby-remark-autolink-headers/gatsby-ssr'),
+      plugin: require('/Users/fengqijun/Documents/GitHub/jun1st.github.io/node_modules/gatsby-remark-autolink-headers/gatsby-ssr'),
       options: {"plugins":[]},
     },{
-      plugin: require('/Users/fengqijun/Documents/workspace/jun1st-blog/node_modules/gatsby-plugin-google-analytics/gatsby-ssr'),
+      plugin: require('/Users/fengqijun/Documents/GitHub/jun1st.github.io/node_modules/gatsby-plugin-google-analytics/gatsby-ssr'),
       options: {"plugins":[],"trackingId":"UA-28122135-1","head":false,"anonymize":false,"respectDNT":false,"exclude":[],"pageTransitionDelay":0},
     },{
-      plugin: require('/Users/fengqijun/Documents/workspace/jun1st-blog/node_modules/gatsby-plugin-feed/gatsby-ssr'),
+      plugin: require('/Users/fengqijun/Documents/GitHub/jun1st.github.io/node_modules/gatsby-plugin-feed/gatsby-ssr'),
       options: {"plugins":[],"query":"\n          {\n            site {\n              siteMetadata {\n                title\n                description\n                siteUrl\n                site_url: siteUrl\n              }\n            }\n          }\n        ","feeds":[{"query":"\n              {\n                allMarkdownRemark(\n                  limit: 1000,\n                  sort: { order: DESC, fields: [frontmatter___date] }\n                  filter: {fields: { langKey: {eq: \"en\"}}}\n                ) {\n                  edges {\n                    node {\n                      excerpt(pruneLength: 250)\n                      html\n                      fields { \n                        slug   \n                      }\n                      frontmatter {\n                        title\n                        date\n                        spoiler\n                      }\n                    }\n                  }\n                }\n              }\n            ","output":"/rss.xml","title":"fengd' Blog RSS Feed"}]},
     },{
-      plugin: require('/Users/fengqijun/Documents/workspace/jun1st-blog/node_modules/gatsby-plugin-manifest/gatsby-ssr'),
+      plugin: require('/Users/fengqijun/Documents/GitHub/jun1st.github.io/node_modules/gatsby-plugin-manifest/gatsby-ssr'),
       options: {"plugins":[],"name":"fengd","short_name":"fengd","start_url":"/","background_color":"#ffffff","theme_color":"#555555","display":"minimal-ui","icon":"src/assets/icon.png","theme_color_in_head":false,"cache_busting_mode":"query","include_favicon":true,"legacy":true,"cacheDigest":"2471d3b540c18d05946273e6e3d6d45d"},
     },{
-      plugin: require('/Users/fengqijun/Documents/workspace/jun1st-blog/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
+      plugin: require('/Users/fengqijun/Documents/GitHub/jun1st.github.io/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
       options: {"plugins":[]},
     },{
-      plugin: require('/Users/fengqijun/Documents/workspace/jun1st-blog/node_modules/gatsby-plugin-typography/gatsby-ssr'),
+      plugin: require('/Users/fengqijun/Documents/GitHub/jun1st.github.io/node_modules/gatsby-plugin-typography/gatsby-ssr'),
       options: {"plugins":[],"pathToConfigModule":"src/utils/typography"},
     }]
 // During bootstrap, we write requires at top of this file which looks like:
