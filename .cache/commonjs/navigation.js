@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
@@ -7,11 +9,13 @@ exports.init = init;
 exports.shouldUpdateScroll = shouldUpdateScroll;
 exports.RouteUpdates = void 0;
 
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
 var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _loader = _interopRequireDefault(require("./loader"));
+var _loader = _interopRequireWildcard(require("./loader"));
 
 var _redirects = _interopRequireDefault(require("./redirects.json"));
 
@@ -19,10 +23,15 @@ var _apiRunnerBrowser = require("./api-runner-browser");
 
 var _emitter = _interopRequireDefault(require("./emitter"));
 
+var _routeAnnouncerProps = require("./route-announcer-props");
+
 var _router = require("@reach/router");
+
+var _history = require("@reach/router/lib/history");
 
 var _gatsbyLink = require("gatsby-link");
 
+// Convert to a map for faster lookup in maybeRedirect()
 const redirectMap = _redirects.default.reduce((map, redirect) => {
   map[redirect.fromPath] = redirect;
   return map;
@@ -33,9 +42,7 @@ function maybeRedirect(pathname) {
 
   if (redirect != null) {
     if (process.env.NODE_ENV !== `production`) {
-      const pageResources = _loader.default.loadPageSync(pathname);
-
-      if (pageResources != null) {
+      if (!_loader.default.isPageNotFound(pathname)) {
         console.error(`The route "${pathname}" matches both a page and a redirect; this is probably not intentional.`);
       }
     }
@@ -62,16 +69,18 @@ const onRouteUpdate = (location, prevLocation) => {
     (0, _apiRunnerBrowser.apiRunner)(`onRouteUpdate`, {
       location,
       prevLocation
-    }); // Temp hack while awaiting https://github.com/reach/router/issues/119
-
-    window.__navigatingToLink = false;
+    });
   }
 };
 
 const navigate = (to, options = {}) => {
-  // Temp hack while awaiting https://github.com/reach/router/issues/119
-  if (!options.replace) {
-    window.__navigatingToLink = true;
+  // Support forward/backward navigation with numbers
+  // navigate(-2) (jumps back 2 history steps)
+  // navigate(2)  (jumps forward 2 history steps)
+  if (typeof to === `number`) {
+    _history.globalHistory.navigate(to);
+
+    return;
   }
 
   let {
@@ -111,9 +120,11 @@ const navigate = (to, options = {}) => {
     // back, the browser will just change the URL and expect JS to handle
     // the change, which won't always work since it might not be a Gatsby
     // page.
-    if (!pageResources || pageResources.status === `error`) {
+    if (!pageResources || pageResources.status === _loader.PageResourceStatus.Error) {
       window.history.replaceState({}, ``, location.href);
       window.location = pathname;
+      clearTimeout(timeoutId);
+      return;
     } // If the loaded page has a different compilation hash to the
     // window, then a rebuild has occurred on the server. Reload.
 
@@ -178,8 +189,11 @@ function shouldUpdateScroll(prevRouterProps, {
 }
 
 function init() {
-  // Temp hack while awaiting https://github.com/reach/router/issues/119
-  window.__navigatingToLink = false;
+  // The "scroll-behavior" package expects the "action" to be on the location
+  // object so let's copy it over.
+  _history.globalHistory.listen(args => {
+    args.location.action = args.action;
+  });
 
   window.___push = to => navigate(to, {
     replace: false
@@ -198,7 +212,7 @@ function init() {
 class RouteAnnouncer extends _react.default.Component {
   constructor(props) {
     super(props);
-    this.announcementRef = _react.default.createRef();
+    this.announcementRef = /*#__PURE__*/_react.default.createRef();
   }
 
   componentDidUpdate(prevProps, nextProps) {
@@ -209,39 +223,28 @@ class RouteAnnouncer extends _react.default.Component {
         pageName = document.title;
       }
 
-      const pageHeadings = document.getElementById(`gatsby-focus-wrapper`).getElementsByTagName(`h1`);
+      const pageHeadings = document.querySelectorAll(`#gatsby-focus-wrapper h1`);
 
       if (pageHeadings && pageHeadings.length) {
         pageName = pageHeadings[0].textContent;
       }
 
       const newAnnouncement = `Navigated to ${pageName}`;
-      const oldAnnouncement = this.announcementRef.current.innerText;
 
-      if (oldAnnouncement !== newAnnouncement) {
-        this.announcementRef.current.innerText = newAnnouncement;
+      if (this.announcementRef.current) {
+        const oldAnnouncement = this.announcementRef.current.innerText;
+
+        if (oldAnnouncement !== newAnnouncement) {
+          this.announcementRef.current.innerText = newAnnouncement;
+        }
       }
     });
   }
 
   render() {
-    return _react.default.createElement("div", {
-      id: "gatsby-announcer",
-      style: {
-        position: `absolute`,
-        width: 1,
-        height: 1,
-        padding: 0,
-        overflow: `hidden`,
-        clip: `rect(0, 0, 0, 0)`,
-        whiteSpace: `nowrap`,
-        border: 0
-      },
-      role: "alert",
-      "aria-live": "assertive",
-      "aria-atomic": "true",
+    return /*#__PURE__*/_react.default.createElement("div", (0, _extends2.default)({}, _routeAnnouncerProps.RouteAnnouncerProps, {
       ref: this.announcementRef
-    });
+    }));
   }
 
 } // Fire on(Pre)RouteUpdate APIs
@@ -257,14 +260,8 @@ class RouteUpdates extends _react.default.Component {
     onRouteUpdate(this.props.location, null);
   }
 
-  componentDidUpdate(prevProps, prevState, shouldFireRouteUpdate) {
-    if (shouldFireRouteUpdate) {
-      onRouteUpdate(this.props.location, prevProps.location);
-    }
-  }
-
-  getSnapshotBeforeUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
+  shouldComponentUpdate(prevProps) {
+    if (this.props.location.href !== prevProps.location.href) {
       onPreRouteUpdate(this.props.location, prevProps.location);
       return true;
     }
@@ -272,8 +269,14 @@ class RouteUpdates extends _react.default.Component {
     return false;
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.location.href !== prevProps.location.href) {
+      onRouteUpdate(this.props.location, prevProps.location);
+    }
+  }
+
   render() {
-    return _react.default.createElement(_react.default.Fragment, null, this.props.children, _react.default.createElement(RouteAnnouncer, {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, this.props.children, /*#__PURE__*/_react.default.createElement(RouteAnnouncer, {
       location: location
     }));
   }
