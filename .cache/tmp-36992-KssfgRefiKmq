@@ -1,0 +1,1 @@
+require("/Users/fengqijun/Documents/Workspace/jun1st.github.io/node_modules/gatsby/dist/utils/telemetry-server.js").default(60405)
