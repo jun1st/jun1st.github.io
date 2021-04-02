@@ -2,7 +2,7 @@
   "name": "fengd-blog",
   "private": true,
   "engines": {
-    "node": "12.x"
+    "node": "15.x"
   },
   "description": "fengd's blog",
   "version": "1.0.0",
