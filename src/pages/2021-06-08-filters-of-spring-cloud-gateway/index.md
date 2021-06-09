@@ -1,7 +1,7 @@
 ---
 title: Web Filter, Global Filter and Gateway Filter of Spring Cloud Gateway
 date: '2021-06-08'
-description: Spring Cloud Gateway 是 Spring Cloud 项目推出的用来代替 Zuul 的项目。 由于 Spring Framework 5.0 支持了 Reactive 的模式，而 Zuul 不支持 Reactive，并且 Netfilx 也没有继续支持 Zuul 的计划，因此 Spring Cloud 组推出了 Spring Cloud Gateway。 本文介绍一下 Spring Cloud Gateway 中可以使用的三种 Filter， Web Filter， Global Filter 和 Gateway Filter。
+spoiler: Spring Cloud Gateway 是 Spring Cloud 项目推出的用来代替 Zuul 的项目。 由于 Spring Framework 5.0 支持了 Reactive 的模式，而 Zuul 不支持 Reactive，并且 Netfilx 也没有继续支持 Zuul 的计划，因此 Spring Cloud 组推出了 Spring Cloud Gateway。 本文介绍一下 Spring Cloud Gateway 中可以使用的三种 Filter， Web Filter， Global Filter 和 Gateway Filter。
 
 
 slug: web-filter-global-filter-and-gateway-filter-of-spring-cloud-gateway
