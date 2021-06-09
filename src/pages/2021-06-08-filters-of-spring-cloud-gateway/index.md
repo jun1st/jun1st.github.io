@@ -141,7 +141,12 @@ builder.routes()
 
 ```java
 @Component
-public class MyRedirectGatewayFilter extends AbstractGatewayFilterFactory<MyRedirectGatewayFilter.Config> {
+public class MyRedirectGatewayFilterFactory
+        extends AbstractGatewayFilterFactory<MyRedirectGatewayFilterFactory.Config> {
+
+    public MyRedirectGatewayFilterFactory() {
+        super(Config.class);
+    }
 
     @Override
     public GatewayFilter apply(Config config) {
@@ -176,6 +181,41 @@ public class MyRedirectGatewayFilter extends AbstractGatewayFilterFactory<MyRedi
 
         private boolean preLogger;
         private boolean postLogger;
+
+        public Config() {
+
+        }
+
+        public Config(String pathPattern, boolean preLogger, boolean postLogger) {
+            super();
+            this.pathPattern = pathPattern;
+            this.preLogger = preLogger;
+            this.postLogger = postLogger;
+        }
+
+        public String getPathPattern() {
+            return pathPattern;
+        }
+
+        public void setPathPattern(String pathPattern) {
+            this.pathPattern = pathPattern;
+        }
+
+        public boolean isPreLogger() {
+            return preLogger;
+        }
+
+        public void setPreLogger(boolean preLogger) {
+            this.preLogger = preLogger;
+        }
+
+        public boolean isPostLogger() {
+            return postLogger;
+        }
+
+        public void setPostLogger(boolean postLogger) {
+            this.postLogger = postLogger;
+        }
     }
 
 }
@@ -187,7 +227,7 @@ public class MyRedirectGatewayFilter extends AbstractGatewayFilterFactory<MyRedi
     predicates:
         - Path=/filterme
     filters:
-        - name: Logging
+        - name: MyRedirect
             args:
                 - pathPattern: filterme
 ```
