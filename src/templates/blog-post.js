@@ -7,6 +7,7 @@ import Bio from '../components/Bio';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import Signup from '../components/Signup';
+import Helmet from 'react-helmet';
 import Panel from '../components/Panel';
 import { formatPostDate, formatReadingTime } from '../utils/helpers';
 import { rhythm, scale } from '../utils/typography';
@@ -95,6 +96,7 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark;
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
+    const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl');
     let {
       previous,
       next,
@@ -148,6 +150,9 @@ class BlogPostTemplate extends React.Component {
           description={post.frontmatter.spoiler}
           slug={post.fields.slug}
         />
+        <Helmet>
+          <link rel="canonical" href={siteUrl + post.fields.slug} />
+        </Helmet>
         <main>
           <article>
             <header>
@@ -259,6 +264,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         author
+        siteUrl
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {

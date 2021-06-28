@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Layout from '../components/Layout';
 import Panel from '../components/Panel';
 import React from 'react';
+import Helmet from 'react-helmet';
 import SEO from '../components/SEO';
 import get from 'lodash/get';
 import { rhythm } from '../utils/typography';
@@ -19,6 +20,9 @@ class BlogIndexTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
+        <Helmet>
+          <link rel="canonical" href="http://blog.fengqijun.me" />
+        </Helmet>
         <SEO />
         <aside>
           <Bio />
