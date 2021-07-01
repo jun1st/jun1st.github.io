@@ -3,7 +3,7 @@ module.exports = {
     title: "fengd's zone",
     author: 'fengd',
     description: 'Personal log by fengd. ',
-    siteUrl: 'https://blog.fengqijun.me',
+    siteUrl: 'https://fengqijun.me',
     social: {
       twitter: '@jun1st',
     },
