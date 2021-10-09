@@ -110,8 +110,37 @@ spring:
 应用启动的时候，会到看 console 输出这么一行：
 
 ```
+Fetching config from server at : http://localhost:8080
 Located environment: name=smart, profiles=[default], label=null, version=2ed1021521dc646922ad8254edbc9bc6d351c4d9, state=null
 ```
 
-因为在 config server 上没有找到对应的配置。
+
+在 config-server 指定的 git repo 中增加了 `smart-local.properties` 之后，再启动，在 Config Server 应用的 console log 会看到：
+
+```
+Adding property source: Config resource 'file [/var/folders/gs/ph_gp04x2dnb1thdk4y4qc1w0000gn/T/config-repo-14660418775293975304/smart-local.properties]' via location 'file:/var/folders/gs/ph_gp04x2dnb1thdk4y4qc1w0000gn/T/config-repo-14660418775293975304/'
+```
+
+### 使用 Config Value
+
+之所以 Spring 框架可以做到几乎一统 Java 应用开发，就是好用！ 引入 spring cloud config， 他的使用跟你使用本地的 config value 没有区别，
+
+```
+@Value("${name}")
+private String name;
+
+@GetMapping("/name")
+public String getName() {
+  return name;
+}
+
+curl 'http://localhost:9090/name'
+## "smart application"
+```
+
+### 刷新 Config 值
+
+待续
+
+
 
