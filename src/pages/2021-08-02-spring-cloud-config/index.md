@@ -140,7 +140,13 @@ curl 'http://localhost:9090/name'
 
 ### 刷新 Config 值
 
-待续
+在 Config Client 这一端启动之后，从 Server 获取的值是保存在内存中的。 那怎么样来获取最新的变更吗？ 重新启动吗？ 
+
+Spring Boot 有 RefreshScope 的概念， Spring Boot Acutator 提供了 Refresh 的功能， 调用 ` post /refresh`  接口就能获取到最新的变更
+
+此外，还有 `spring boot cloud bus` 这个组件可以用。 cloud bus 通过消息队列来 pub/sub 变更通知。 他支持 Kafka 和 RabbitMQ。 
+
+使用 cloud bus 相对复杂一些， 值得专门写一遍文章来介绍。
 
 
 
