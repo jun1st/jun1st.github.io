@@ -88,12 +88,12 @@ Maven 通过 transitive dependency 机制，来解决版本依赖和必须声明
 
 Dependency Scope 的作用是限定 transivity 的范围， 总共有 6 种 Scope。
 
-> compile: 这是默认的 scope，dependencies 需要编译的时候，存在在 classpath 里
-> provided: 这个表示 jdk 提供，或者运行时的容器环境会存在。
-> runtime: 编译时不需要，执行时需要
-> test: 测试时需要
-> system: 这个 provided 类似，只是说需要在运行时直接提供 jar 包， 比如执行命令时声明 -jar
-> import:  这个只能用在 `<dependencyManagement>` 里，并且依赖类型是前面提到的 `pom` 类型。 
+* compile: 这是默认的 scope，dependencies 需要编译的时候，存在在 classpath 里
+* provided: 这个表示 jdk 提供，或者运行时的容器环境会存在。
+* runtime: 编译时不需要，执行时需要
+* test: 测试时需要
+* system: 这个 provided 类似，只是说需要在运行时直接提供 jar 包， 比如执行命令时声明 -jar
+* import:  这个只能用在 `<dependencyManagement>` 里，并且依赖类型是前面提到的 `pom` 类型。 
 
 **Import** 这种方式在定义某个 Library 的时候，这个 Library 本身又拆分为几个小的子 libary 的时候最有效。 
 
@@ -215,7 +215,14 @@ Dependency Scope 的作用是限定 transivity 的范围， 总共有 6 种 Scop
 </project>
 ```
 
-上面的过程是，你定一个 bom，这个 bom 包含一个 parent artifact， 然后这个 parent artifact，继承自 bom，包含了 project1 和 project 2 两个 artifact， project 1 和 project 2 都继承自 parent， 因此可以在 bom 中指定 project 1 和 project 2 的版本。
+上面的过程是：
+
+1. 你指定一个 bom project，这个 bom 包含一个 parent artifact， 
+2. parent artifact 继承自 bom， 并且包含了公共的，需要的 dependency，
+3. project 1 继承自 parent， 通过 parent，可以访问 {project1version}
+4. project 2 继承自 parent， 通过 parent，可以访问 {project2version}
+
+因此可以做到通过 bom 控制包含的子 module 的版本。
 
 实际使用
 
