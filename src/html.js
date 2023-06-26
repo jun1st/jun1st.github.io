@@ -1,19 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const injectGA = () => {
-  if (typeof window == 'undefined') {
-    return;
-  }
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    window.dataLayer.push(arguments);
-  }
-  gtag('js', new Date());
-
-  gtag('config', 'UA-28122135-1');
-};
-
 export default class HTML extends React.Component {
   render() {
     return (
@@ -76,7 +63,6 @@ export default class HTML extends React.Component {
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-28122135-1"
           ></script>
-          <script>{injectGA()}</script>
         </body>
       </html>
     );

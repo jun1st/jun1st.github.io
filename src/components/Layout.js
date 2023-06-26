@@ -7,6 +7,19 @@ import { rhythm, scale } from '../utils/typography';
 import sun from '../assets/sun.png';
 import moon from '../assets/moon.png';
 
+const injectGA = () => {
+  if (typeof window == 'undefined') {
+    return;
+  }
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-28122135-1');
+};
+
 class Layout extends React.Component {
   state = {
     theme: null,
@@ -16,7 +29,10 @@ class Layout extends React.Component {
     window.__onThemeChange = () => {
       this.setState({ theme: window.__theme });
     };
+
+    injectGA();
   }
+
   renderHeader() {
     const { location, title } = this.props;
     const rootPath = `${__PATH_PREFIX__}/`;
