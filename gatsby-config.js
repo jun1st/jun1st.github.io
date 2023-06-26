@@ -3,7 +3,7 @@ module.exports = {
     title: "fengd's zone",
     author: 'fengd',
     description: 'Personal log by fengd. ',
-    siteUrl: 'https://fengqijun.me',
+    siteUrl: 'https://blog.fengqijun.me',
     social: {
       twitter: '@jun1st',
     },
@@ -53,12 +53,6 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: `UA-28122135-1`,
-      },
-    },
     {
       resolve: `gatsby-plugin-feed`,
       options: {

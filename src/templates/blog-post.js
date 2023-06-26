@@ -11,6 +11,7 @@ import Helmet from 'react-helmet';
 import Panel from '../components/Panel';
 import { formatPostDate, formatReadingTime } from '../utils/helpers';
 import { rhythm, scale } from '../utils/typography';
+
 import {
   codeToLanguage,
   createLanguageLink,
