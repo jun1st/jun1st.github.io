@@ -59,7 +59,10 @@ export default class HTML extends React.Component {
             dangerouslySetInnerHTML={{ __html: this.props.body }}
           />
           {this.props.postBodyComponents}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1J88QGVFK"></script>
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-Z1J88QGVFK"
+          ></script>
         </body>
       </html>
     );
